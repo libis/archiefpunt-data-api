@@ -1,0 +1,5 @@
+config/config.yml
+gems/*
+.idea
+Gemfile.lock
+.env

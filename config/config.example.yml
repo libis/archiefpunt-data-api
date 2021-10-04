@@ -1,0 +1,14 @@
+---
+:debug: false
+:key: YOUR-GOOGLE-API-KEY
+:solis:
+  :graph_name: https://abv.libis.be/
+  :graph_prefix: abv
+  :sparql_endpoint: http://127.0.0.1:8890/sparql
+  :inflections: ./config/solis/abv.json
+:shape: ./config/solis/abv_shacl.ttl
+:cache: ../cache
+:sheets:
+  :abv: 1xhvOCfiSIOtHjIJUtRrxvJ54OoDosNJ_JsA1B7FfpsI
+:redis:
+  url: "redis://127.0.0.1:6379/0"

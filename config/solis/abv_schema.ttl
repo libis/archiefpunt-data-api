@@ -1,0 +1,2011 @@
+@prefix abv: <https://abv.libis.be/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+skos:Concept a owl:Class;
+  owl:sameAs abv:Concept .
+
+abv: a owl:Ontology;
+  <dc11:creator> "Archiefpunt, Meemo, KADOC, LIBIS";
+  <dc11:date> "2021-10-04 15:48:07 +0200";
+  <dc11:description> "Archiefbank ontology";
+  <dc11:title> "Archiefbank ontology";
+  owl:versionInfo 0.1 .
+
+abv:Plaatsnaam a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "Plaatsnaam";
+  rdfs:comment "";
+  rdfs:domain abv:Plaats;
+  rdfs:range abv:Naam .
+
+abv:BibliografieArchief a owl:Class;
+  rdfs:label "BibliografieArchief";
+  rdfs:comment "";
+  rdfs:subClassOf abv:Concept, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Bronbeschrijving a owl:Class;
+  rdfs:label "Bronbeschrijving";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Concept, [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Contactpersoon a owl:Class;
+  rdfs:label "Contactpersoon";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Agent .
+
+abv:FunctieBeroepActiviteit a owl:Class;
+  rdfs:label "FunctieBeroepActiviteit";
+  rdfs:comment "";
+  rdfs:subClassOf abv:Concept, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Rol a owl:Class;
+  rdfs:label "Rol";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Concept, [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:RolBeheerder a owl:Class;
+  rdfs:label "RolBeheerder";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:Soort a owl:Class;
+  rdfs:label "Soort";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Concept, [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:TypeAgent a owl:Class;
+  rdfs:label "TypeAgent";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:aantekening_archivaris a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "aantekening_archivaris";
+  rdfs:comment "Dit veld zal alle aantekeningen bundelen die voordien in de velden “aantekening”, “werknotities” en “aantekening archivaris” stonden.";
+  rdfs:domain abv:Archief;
+  rdfs:range xsd:string .
+
+abv:adres a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "adres";
+  rdfs:comment "Adres van bewaarplaats.";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Adres .
+
+abv:associatie a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "associatie";
+  rdfs:comment "Trefwoordenveld. Kan gelinkt worden met een onderwerp, agent, plaats en een periode.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Associatie .
+
+abv:associaties a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "associaties";
+  rdfs:comment "Plaats, Periode, Onderwerp of agent gelinkt aan de agent. ";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Associatie .
+
+abv:beheerder a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "beheerder";
+  rdfs:comment """persoon of organisatie die het archief of de collectie vandaag beheerd.
+link naar wat voorheen de ‘bewaarplaats’ was. 
+Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. """;
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Beheerder .
+
+abv:bereikbaarheid a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bereikbaarheid";
+  rdfs:comment "Indien list: Rolstoeltoegankelijk, Aangepast sanitair, Parkeergelegenheid";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Bereikbaarheid .
+
+abv:bibliografie_agent a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bibliografie_agent";
+  rdfs:comment "Bronnen over de agent.";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Publicatie .
+
+abv:bibliografie_archief a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bibliografie_archief";
+  rdfs:comment "bibliografie werken gebaseerd op of gerelateerd aan het archief/de collectie";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Publicatie .
+
+abv:bijdragers a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bijdragers";
+  rdfs:comment "";
+  rdfs:domain abv:Waardering;
+  rdfs:range abv:Agent .
+
+abv:bron_beschrijving_agent a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bron_beschrijving_agent";
+  rdfs:comment "Bronnen gebruikt om agentbeschrijving op te stellen.";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Publicatie .
+
+abv:bron_beschrijving_archief a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bron_beschrijving_archief";
+  rdfs:comment "bibliografie werken gebruikt voor het opstellen van de beschrijving";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Publicatie .
+
+abv:bron_waardering a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bron_waardering";
+  rdfs:comment "";
+  rdfs:domain abv:Waardering;
+  rdfs:range abv:Publicatie .
+
+abv:contactpersoon a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "contactpersoon";
+  rdfs:comment "Verwijst naar plek/persoon waar archief bewaard wordt.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Agent .
+
+abv:definitie a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "definitie";
+  rdfs:comment "";
+  rdfs:domain abv:Concept;
+  rdfs:range abv:Definitie .
+
+abv:email a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "email";
+  rdfs:comment "Emailadres van bewaarplaats.";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:functie_beroep_activiteit a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "functie_beroep_activiteit";
+  rdfs:comment "Functie, beroep of activiteiten waarin agent ";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Functie .
+
+abv:gebouw a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "gebouw";
+  rdfs:comment "Verwijzing naar de bewaarplaatsen die verbonden zijn aan de Agent";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:geschiedenis_agent a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "geschiedenis_agent";
+  rdfs:comment "Biografische geschiedenis van de agent.";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:GeschiedenisAgent .
+
+abv:geschiedenis_archief a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "geschiedenis_archief";
+  rdfs:comment "Geschiedenis van het archief.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:GeschiedenisArchief .
+
+abv:inhoud_en_bereik a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "inhoud_en_bereik";
+  rdfs:comment "Inhoud van archief.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:InhoudBereik .
+
+abv:label a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "label";
+  rdfs:comment "";
+  rdfs:domain abv:Concept;
+  rdfs:range abv:Label .
+
+abv:omvang a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "omvang";
+  rdfs:comment "vrije tekst beschrijving van de dimensies en materiaalsoorten waaruit het archiefbestand bestaat";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Omvang .
+
+abv:opmerking a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "opmerking";
+  rdfs:comment "Vrij opmerkingen veld.";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:samensteller a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "samensteller";
+  rdfs:comment "nieuwe overkoepelende term voor zowel archiefvormers, verzamelaars als documentalisten. herhaalbaar om verschillende samenstellers en hun verschillende rollen te kunnen documenteren";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Samensteller .
+
+abv:selectie a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "selectie";
+  rdfs:comment "";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Waardering .
+
+abv:telefoon a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "telefoon";
+  rdfs:comment "Telefoonnummer van bewaarplaats.";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:toegang a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "toegang";
+  rdfs:comment """link naar één of meer beschrijvingen van toegangen. 
+veld verzamelt informatie uit oude velden “toegangen” en “online toegangen”""";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Toegang .
+
+abv:vergelijking a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "vergelijking";
+  rdfs:comment "";
+  rdfs:domain abv:Waardering;
+  rdfs:range abv:Vergelijking .
+
+abv:verwerving a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "verwerving";
+  rdfs:comment "Uitleg hoe archief verworven werd door bewaarinstelling.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Verwerving .
+
+abv:website a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "website";
+  rdfs:comment "Website bewaarinstelling.";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:zoektoegang a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "zoektoegang";
+  rdfs:comment "Verwijzing naar de toegang voor de archieven/collecties die de Agent bewaard.";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Toegang .
+
+abv:Aangroei a owl:Class;
+  rdfs:label "Aangroei";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel, [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Bereikbaarheid a owl:Class;
+  rdfs:label "Bereikbaarheid";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:Beschrijvingsniveau a owl:Class;
+  rdfs:label "Beschrijvingsniveau";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:Bronverwijzing a owl:Class;
+  rdfs:label "Bronverwijzing";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:verwijzing
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:verwijzing
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Erkenning a owl:Class;
+  rdfs:label "Erkenning";
+  rdfs:comment "";
+  rdfs:subClassOf abv:Concept, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Functie a owl:Class;
+  rdfs:label "Functie";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:Onderwerp a owl:Class;
+  rdfs:label "Onderwerp";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Ordening a owl:Class;
+  rdfs:label "Ordening";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:Periode a owl:Class;
+  rdfs:label "Periode";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:Rechtenstatus a owl:Class;
+  rdfs:label "Rechtenstatus";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:RolSamensteller a owl:Class;
+  rdfs:label "RolSamensteller";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel, [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Taal a owl:Class;
+  rdfs:label "Taal";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:TypeIdentificatienummer a owl:Class;
+  rdfs:label "TypeIdentificatienummer";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:TypeNaam a owl:Class;
+  rdfs:label "TypeNaam";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel, [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:TypeVergelijking a owl:Class;
+  rdfs:label "TypeVergelijking";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:TypeWaarde a owl:Class;
+  rdfs:label "TypeWaarde";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ],
+    abv:Codetabel .
+
+abv:URL a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "URL";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range xsd:anyURI .
+
+abv:aangroei a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "aangroei";
+  rdfs:comment "Aangroei toont status van het archief aan: statisch, dynamisch of is de status onbekend.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Aangroei .
+
+abv:agent a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "agent";
+  rdfs:comment "Agent geassocieerd met archief en/of  samensteller";
+  rdfs:domain abv:Associatie;
+  rdfs:range abv:Agent .
+
+abv:auteur a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "auteur";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range abv:Naam .
+
+abv:beschrijvingsniveau a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "beschrijvingsniveau";
+  rdfs:comment "Beschrijvingsniveau van het archief. Keuze uit archief, fonds, serie, collectie, virtuele collectie.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Beschrijvingsniveau .
+
+abv:bron a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bron";
+  rdfs:comment "Verwijzing naar agent die identificatie aanmaakt.";
+  rdfs:domain abv:Identificatienummer;
+  rdfs:range abv:Agent .
+
+abv:bronverwijzing_archief a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bronverwijzing_archief";
+  rdfs:comment "Correcte verwijzing naar het record en naar het archief in de Chicagostijl.";
+  rdfs:domain abv:Archief;
+  rdfs:range xsd:string .
+
+abv:bronverwijzing_record a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "bronverwijzing_record";
+  rdfs:comment "Correcte verwijzing naar het record en naar het archief in de Chicagostijl.";
+  rdfs:domain abv:Archief;
+  rdfs:range xsd:string .
+
+abv:contractuele_beperking a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "contractuele_beperking";
+  rdfs:comment "";
+  rdfs:domain abv:JuridischeBeperking;
+  rdfs:range xsd:boolean .
+
+abv:datum_waardering a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "datum_waardering";
+  rdfs:comment "";
+  rdfs:domain abv:Waardering;
+  rdfs:range xsd:date .
+
+abv:erkenning a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "erkenning";
+  rdfs:comment "Categorie enkel geldig wanneer agent een bewaarplaats is. Erkenningniveaus zijn: landelijk, regionaal, lokaal en [none].";
+  rdfs:domain abv:Agent;
+  rdfs:range abv:Erkenning .
+
+abv:gemeente a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "gemeente";
+  rdfs:comment "";
+  rdfs:domain abv:Adres;
+  rdfs:range abv:Plaats .
+
+abv:gevoelig_voor_auteursrechtelijkebescherming a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "gevoelig_voor_auteursrechtelijkebescherming";
+  rdfs:comment "";
+  rdfs:domain abv:JuridischeBeperking;
+  rdfs:range xsd:boolean .
+
+abv:identificatie a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "identificatie";
+  rdfs:comment "";
+  rdfs:domain abv:Concept,
+    abv:Agent;
+  rdfs:range abv:Identificatienummer .
+
+abv:is_onderdeel_van a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "is_onderdeel_van";
+  rdfs:comment "Alleen gebruik maken wanneer een archiefbestanddeel deel uitmaakt van een groter archiefbestanddeel";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Archief .
+
+abv:juridische_beperking a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "juridische_beperking";
+  rdfs:comment "bevat het archief/collectie materiaal dat mogelijk veel persoonsgegevens bevat, bevat het archief/collectie materiaal dat mogelijk veel persoonsgegevens bevat, bevat het archief/collectie materiaal dat mogelijk auteursrechtelijk beschermd ";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:JuridischeBeperking .
+
+abv:onderwerp a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "onderwerp";
+  rdfs:comment "Onderwerp trefwoorden die geassocieerd kunnen worden met archief.";
+  rdfs:domain abv:Associatie;
+  rdfs:range abv:Onderwerp .
+
+abv:openingsuren a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "openingsuren";
+  rdfs:comment "Openingsuren waarop de Agent bereikbaar/toegankelijk is";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:ordening a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "ordening";
+  rdfs:comment "Toont de ordeningsstatus aan van het archief:geordend, niet geordend of onbekend.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Ordening .
+
+abv:periode a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "periode";
+  rdfs:comment "Tijdsperiode waarmee archief gelinkt kan worden.";
+  rdfs:domain abv:Associatie;
+  rdfs:range abv:Periode .
+
+abv:plaats a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "plaats";
+  rdfs:comment "Plaats geassocieerd met het archief.";
+  rdfs:domain abv:Associatie;
+  rdfs:range abv:Plaats .
+
+abv:plaats_van_uitgave a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "plaats_van_uitgave";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range xsd:string .
+
+abv:privacy_gevoelig a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "privacy_gevoelig";
+  rdfs:comment "";
+  rdfs:domain abv:JuridischeBeperking;
+  rdfs:range xsd:boolean .
+
+abv:raadplegingsvoorwaarde a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "raadplegingsvoorwaarde";
+  rdfs:comment "vrije tekst omschrijving van de concrete voorwaarden die verbonden zijn aan de toegang tot het archief/collectie";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Raadplegingsvoorwaarde .
+
+abv:rechtenstatus_metadata a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "rechtenstatus_metadata";
+  rdfs:comment "Geeft weer onder welke licentievoorwaarden de metadata gepubliceerd kunnen worden.";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:Rechtenstatus .
+
+abv:straat_en_nummer a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "straat_en_nummer";
+  rdfs:comment "";
+  rdfs:domain abv:Adres;
+  rdfs:range xsd:string .
+
+abv:term a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "term";
+  rdfs:comment "";
+  rdfs:domain abv:Label;
+  rdfs:range xsd:string .
+
+abv:toegang_gebruiksvoorwaarden a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "toegang_gebruiksvoorwaarden";
+  rdfs:comment "Voorwaarden om toegang te krijgen tot archieven/collecties die door de Agent worden bewaard.";
+  rdfs:domain abv:Agent;
+  rdfs:range xsd:string .
+
+abv:type_naam a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "type_naam";
+  rdfs:comment "";
+  rdfs:domain abv:Naam;
+  rdfs:range abv:TypeNaam .
+
+abv:type_vergelijking a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "type_vergelijking";
+  rdfs:comment "";
+  rdfs:domain abv:Vergelijking;
+  rdfs:range abv:TypeVergelijking .
+
+abv:type_waarde a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "type_waarde";
+  rdfs:comment "";
+  rdfs:domain abv:Waarde;
+  rdfs:range abv:TypeWaarde .
+
+abv:uitgever a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "uitgever";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range xsd:string .
+
+abv:verwijzing a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "verwijzing";
+  rdfs:comment "";
+  rdfs:domain abv:Bronverwijzing;
+  rdfs:range xsd:string .
+
+abv:waardestelling a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "waardestelling";
+  rdfs:comment "Open tekstveld om waardestelling toe te lichten.";
+  rdfs:domain abv:Waardering;
+  rdfs:range xsd:string .
+
+abv:identificatienummer a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "identificatienummer";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Plaats,
+    abv:Archief,
+    abv:Publicatie;
+  rdfs:range abv:Identificatienummer .
+
+abv:Adres a owl:Class;
+  rdfs:label "Adres";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:gemeente
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:gemeente
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:straat_en_nummer
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:straat_en_nummer
+  ] .
+
+abv:Beheerder a owl:Class;
+  rdfs:label "Beheerder";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:rol
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:rol
+  ] .
+
+abv:Definitie a owl:Class;
+  rdfs:label "Definitie";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ] .
+
+abv:GeschiedenisAgent a owl:Class;
+  rdfs:label "GeschiedenisAgent";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ] .
+
+abv:GeschiedenisArchief a owl:Class;
+  rdfs:label "GeschiedenisArchief";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ] .
+
+abv:InhoudBereik a owl:Class;
+  rdfs:label "InhoudBereik";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ] .
+
+abv:Label a owl:Class;
+  rdfs:label "Label";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:term
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:term
+  ] .
+
+abv:Omvang a owl:Class;
+  rdfs:label "Omvang";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ] .
+
+abv:Raadplegingsvoorwaarde a owl:Class;
+  rdfs:label "Raadplegingsvoorwaarde";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ] .
+
+abv:Samensteller a owl:Class;
+  rdfs:label "Samensteller";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:rol
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:rol
+  ] .
+
+abv:Titel a owl:Class;
+  rdfs:label "Titel";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Verwerving a owl:Class;
+  rdfs:label "Verwerving";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ] .
+
+abv:datum_uitgave a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "datum_uitgave";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range xsd:date .
+
+abv:reeks a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "reeks";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range xsd:string .
+
+abv:reeksnummer a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "reeksnummer";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Publicatie;
+  rdfs:range xsd:string .
+
+abv:rol a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "rol";
+  rdfs:comment "";
+  rdfs:domain abv:Samensteller,
+    abv:Beheerder;
+  rdfs:range abv:RolSamensteller .
+
+abv:JuridischeBeperking a owl:Class;
+  rdfs:label "JuridischeBeperking";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:contractuele_beperking
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:privacy_gevoelig
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:gevoelig_voor_auteursrechtelijkebescherming
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:privacy_gevoelig
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:contractuele_beperking
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:gevoelig_voor_auteursrechtelijkebescherming
+  ] .
+
+abv:Plaats a owl:Class;
+  rdfs:label "Plaats";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:Vergelijking a owl:Class;
+  rdfs:label "Vergelijking";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:type_vergelijking
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type_vergelijking
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ] .
+
+abv:Waarde a owl:Class;
+  rdfs:label "Waarde";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type_waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:type_waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:tekst
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ] .
+
+abv:datering a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "datering";
+  rdfs:comment "Datum aanmaken beschrijving.";
+  rdfs:domain abv:Agent,
+    abv:Archief,
+    abv:Identificatienummer;
+  rdfs:range xsd:date .
+
+abv:titel a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "titel";
+  rdfs:comment "";
+  rdfs:domain abv:Toegang,
+    abv:Archief,
+    abv:Publicatie;
+  rdfs:range abv:Titel .
+
+abv:type a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "type";
+  rdfs:comment "";
+  rdfs:domain abv:Concept,
+    abv:Agent,
+    abv:Identificatienummer;
+  rdfs:range abv:TypeIdentificatienummer .
+
+abv:Naam a owl:Class;
+  rdfs:label "Naam";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type_naam
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:type_naam
+  ] .
+
+abv:Associatie a owl:Class;
+  rdfs:label "Associatie";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:plaats
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:onderwerp
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:plaats
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:agent
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:periode
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:agent
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:onderwerp
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:periode
+  ] .
+
+abv:Identificatienummer a owl:Class;
+  rdfs:label "Identificatienummer";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bron
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:type
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datering
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datering
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:bron
+  ] .
+
+abv:naam a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "naam";
+  rdfs:comment "";
+  rdfs:domain abv:Samensteller,
+    abv:Beheerder,
+    abv:Naam,
+    abv:Agent;
+  rdfs:range abv:Agent .
+
+abv:Waardering a owl:Class;
+  rdfs:label "Waardering";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waardestelling
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waardestelling
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:vergelijking
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datum_waardering
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:datum_waardering
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bijdragers
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bron_waardering
+  ] .
+
+abv:waarde a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "waarde";
+  rdfs:comment "";
+  rdfs:domain abv:Omvang,
+    abv:Waardering,
+    abv:Titel,
+    abv:Identificatienummer,
+    abv:GeschiedenisAgent;
+  rdfs:range abv:Waarde .
+
+abv:Toegang a owl:Class;
+  rdfs:label "Toegang";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datum_uitgave
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:auteur
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:identificatienummer
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:uitgever
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:reeks
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:reeks
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:reeksnummer
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:URL
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:plaats_van_uitgave
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:titel
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datum_uitgave
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:reeksnummer
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:titel
+  ] .
+
+abv:Concept a owl:Class;
+  rdfs:label "Concept";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:identificatie
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:definitie
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:label
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:type
+  ] .
+
+abv:tekst a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "tekst";
+  rdfs:comment "";
+  rdfs:domain abv:Waarde,
+    abv:GeschiedenisArchief,
+    abv:Raadplegingsvoorwaarde,
+    abv:InhoudBereik,
+    abv:Verwerving,
+    abv:Vergelijking,
+    abv:Definitie;
+  rdfs:range xsd:string .
+
+abv:Publicatie a owl:Class;
+  rdfs:label "Publicatie";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:reeks
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:reeks
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:identificatienummer
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:reeksnummer
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:titel
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:uitgever
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datum_uitgave
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datum_uitgave
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:reeksnummer
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:titel
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:plaats_van_uitgave
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:auteur
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:URL
+  ] .
+
+abv:Codetabel a owl:Class;
+  rdfs:label "Codetabel";
+  rdfs:comment "";
+  rdfs:subClassOf abv:Concept, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:taal a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "taal";
+  rdfs:comment "";
+  rdfs:domain abv:Omvang,
+    abv:Waarde,
+    abv:GeschiedenisArchief,
+    abv:Raadplegingsvoorwaarde,
+    abv:Naam,
+    abv:InhoudBereik,
+    abv:Label,
+    abv:Verwerving,
+    abv:Titel,
+    abv:Agent,
+    abv:Archief,
+    abv:Vergelijking,
+    abv:Definitie,
+    abv:GeschiedenisAgent;
+  rdfs:range abv:Taal .
+
+abv:Agent a owl:Class;
+  rdfs:label "Agent";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:erkenning
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:gebouw
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bron_beschrijving_agent
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:datering
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:website
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:adres
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datering
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bibliografie_agent
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:geschiedenis_agent
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:openingsuren
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:type
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:erkenning
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:telefoon
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:openingsuren
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:naam
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:zoektoegang
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bereikbaarheid
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:identificatie
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:functie_beroep_activiteit
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:toegang_gebruiksvoorwaarden
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:email
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:toegang_gebruiksvoorwaarden
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:opmerking
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:associaties
+  ] .
+
+abv:Archief a owl:Class;
+  rdfs:label "Archief";
+  rdfs:comment "";
+  rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:contactpersoon
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:ordening
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:juridische_beperking
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:beschrijvingsniveau
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:is_onderdeel_van
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:ordening
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:associatie
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:titel
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:selectie
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:aantekening_archivaris
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:aangroei
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:samensteller
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:beschrijvingsniveau
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:is_onderdeel_van
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:verwerving
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:bronverwijzing_record
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:identificatienummer
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bron_beschrijving_archief
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:raadplegingsvoorwaarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bibliografie_archief
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:rechtenstatus_metadata
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:inhoud_en_bereik
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:omvang
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:bronverwijzing_archief
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:bronverwijzing_archief
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:bronverwijzing_record
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:raadplegingsvoorwaarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:toegang
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:rechtenstatus_metadata
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:geschiedenis_archief
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:beheerder
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:juridische_beperking
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:aangroei
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:datering
+  ] .
+
+abv:id a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property>;
+  rdfs:label "id";
+  rdfs:comment "systeem UUID";
+  rdfs:domain abv:Samensteller,
+    abv:Omvang,
+    abv:Aangroei,
+    abv:Soort,
+    abv:Bronverwijzing,
+    abv:GeschiedenisArchief,
+    abv:Associatie,
+    abv:Naam,
+    abv:InhoudBereik,
+    abv:Beschrijvingsniveau,
+    abv:Label,
+    abv:TypeWaarde,
+    abv:Bereikbaarheid,
+    abv:Functie,
+    abv:Erkenning,
+    abv:Agent,
+    abv:Archief,
+    abv:Publicatie,
+    abv:Contactpersoon,
+    abv:FunctieBeroepActiviteit,
+    abv:Codetabel,
+    abv:Adres,
+    abv:Taal,
+    abv:Rechtenstatus,
+    abv:Waarde,
+    abv:TypeIdentificatienummer,
+    abv:Toegang,
+    abv:RolBeheerder,
+    abv:Beheerder,
+    abv:Raadplegingsvoorwaarde,
+    abv:Waardering,
+    abv:TypeAgent,
+    abv:Concept,
+    abv:Verwerving,
+    abv:Titel,
+    abv:Bronbeschrijving,
+    abv:RolSamensteller,
+    abv:Rol,
+    abv:TypeNaam,
+    abv:Plaats,
+    abv:BibliografieArchief,
+    abv:TypeVergelijking,
+    abv:Identificatienummer,
+    abv:Vergelijking,
+    abv:Periode,
+    abv:JuridischeBeperking,
+    abv:Onderwerp,
+    abv:GeschiedenisAgent,
+    abv:Ordening,
+    abv:Definitie;
+  rdfs:range xsd:string .
