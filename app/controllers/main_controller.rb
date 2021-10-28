@@ -29,7 +29,11 @@ class MainController < GenericController
 
   get '/:entity' do
     content_type :json
+    #recursive_compact(JSON.parse(for_resource.all(params.merge({stats: {total: :count}})).to_jsonapi)).to_json
     for_resource.all(params.merge({stats: {total: :count}})).to_jsonapi
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, "Invalid attribute", e.message).to_json
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, "Not found", "'#{id}' niet gevonden in  #{params[:entity]}").to_json
@@ -54,8 +58,13 @@ class MainController < GenericController
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, "Not found", "'#{id}' niet gevonden in  #{params[:entity]}").to_json
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, "Invalid attribute", e.message).to_json
   rescue StandardError => e
     content_type :json
+    puts e.message
+    puts e.backtrace.join("\n")
     halt 500, api_error(response.status, request.url, "Unknown Error", e.message).to_json
   end
 
@@ -66,6 +75,9 @@ class MainController < GenericController
     else
       for_model.model.to_json
     end
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, "Invalid attribute", e.message).to_json
   rescue StandardError => e
     content_type :json
     halt 500, api_error(response.status, request.url, "Unknown Error", e.message).to_json
@@ -77,6 +89,9 @@ class MainController < GenericController
     resource = for_model.new.update(data)
 
     for_resource.find({id: resource.id}).to_jsonapi
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, "Invalid attribute", e.message).to_json
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, "Not found", "'#{id}' niet gevonden in  #{params[:entity]}").to_json
@@ -94,6 +109,9 @@ class MainController < GenericController
     resource = for_resource.find({id: data.id}).data
     resource.destroy
     resource
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, "Invalid attribute", e.message).to_json
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, "Not found", "'#{id}' niet gevonden in  #{params[:entity]}").to_json
@@ -110,6 +128,9 @@ class MainController < GenericController
     data = {id: id}
     data = data.merge(params)
     for_resource.find(data).to_jsonapi
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, "Invalid attribute", e.message).to_json
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, "Not found", "'#{id}' niet gevonden in  #{params[:entity]}").to_json

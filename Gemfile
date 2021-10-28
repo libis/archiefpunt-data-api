@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
-gem 'puma'
 gem "json"
+gem 'puma'
 
-gem 'redis'
 gem 'http-accept'
 gem 'rack-cors'
+gem 'redis'
 gem 'sinatra'
 gem 'sinatra-contrib'
-#gem 'solis'
-gem 'solis', path: '/Users/mehmetc/Dropbox/AllSources/ego/solis'
+gem 'uuidtools'
+gem 'solis', path: '../../../ego/solis'

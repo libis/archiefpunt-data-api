@@ -2,7 +2,7 @@ $LOAD_PATH << '.' << './lib'
 require 'solis'
 
 key = Solis::ConfigFile[:key]
-s = Solis::Shape::Reader::Sheet.read(key, Solis::ConfigFile[:sheets][:abv], from_cache: true)
+s = Solis::Shape::Reader::Sheet.read(key, Solis::ConfigFile[:sheets][:abv], from_cache: false)
 
 File.open('./solis/abv_shacl.ttl', 'wb') {|f| f.puts s[:shacl]}
 File.open('./solis/abv.json', 'wb') {|f| f.puts s[:inflections]}

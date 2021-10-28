@@ -1,4 +1,4 @@
-FROM ruby:2.7.2
+FROM ruby:2.7.4
 
 RUN bundle config --global frozen 1
 RUN useradd abv -u 10000 -m -d /app

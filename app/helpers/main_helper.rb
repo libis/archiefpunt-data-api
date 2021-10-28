@@ -39,6 +39,16 @@ module Sinatra
     rescue Exception => e
       Solis::LOGGER.error('Unable to write audit')
     end
+
+    def recursive_compact(hash_or_array)
+      p = proc do |*args|
+        v = args.last
+        v.delete_if(&p) if v.respond_to? :delete_if
+        v.nil? || v.respond_to?(:"empty?") && v.empty?
+      end
+
+      hash_or_array.delete_if(&p)
+    end
   end
   helpers MainHelper
 end

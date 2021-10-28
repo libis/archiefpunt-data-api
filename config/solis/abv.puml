@@ -7,7 +7,7 @@ skinparam componentStyle uml2
 skinparam wrapMessageWidth 100
 skinparam ArrowColor #Maroon
 
-title Archiefbank ontology - 0.1 - 2021-10-04 15:48:07 +0200
+title Archiefbank ontology - 0.3 - 2021-10-23 00:23:00 +0200
               
 package abv {
 
@@ -30,6 +30,7 @@ class Agent{
 	{field} abv:TypeAgent : type 
 	{field} abv:Naam : naam 
 	{field} xsd:date : datering 
+	{field} xsd:string : datering_text 
 	{field} abv:GeschiedenisAgent : geschiedenis_agent 
 	{field} abv:Functie : functie_beroep_activiteit 
 	{field} abv:Erkenning : erkenning 
@@ -67,6 +68,7 @@ class Archief{
 	{field} abv:Identificatienummer : identificatienummer 
 	{field} abv:Titel : titel 
 	{field} xsd:date : datering 
+	{field} xsd:string : datering_text 
 	{field} abv:Beschrijvingsniveau : beschrijvingsniveau 
 	{field} abv:Archief : is_onderdeel_van 
 	{field} abv:Omvang : omvang 
@@ -77,11 +79,14 @@ class Archief{
 	{field} abv:InhoudBereik : inhoud_en_bereik 
 	{field} abv:Waardering : selectie 
 	{field} abv:Aangroei : aangroei 
+	{field} xsd:string : aangroei_text 
 	{field} abv:Ordening : ordening 
+	{field} xsd:string : ordening_text 
 	{field} abv:JuridischeBeperking : juridische_beperking 
 	{field} abv:Agent : contactpersoon 
 	{field} abv:Raadplegingsvoorwaarde : raadplegingsvoorwaarde 
 	{field} abv:Taal : taal 
+	{field} xsd:string : taal_text 
 	{field} abv:Toegang : toegang 
 	{field} abv:Publicatie : bron_beschrijving_archief 
 	{field} abv:Publicatie : bibliografie_archief 
@@ -160,7 +165,7 @@ Bronbeschrijving --|> Concept
 
 class Bronverwijzing{
 	{field} xsd:string : id 
-	{field} xsd:string : verwijzing 
+	{field} rdf:langString : verwijzing 
 }
 
 
@@ -173,14 +178,12 @@ Codetabel --|> Concept
 class Concept{
 	{field} xsd:string : id 
 	{field} abv:Identificatienummer : identificatie 
-	{field} abv:Label : label 
+	{field} rdf:langString : label 
 	{field} abv:Concept : type 
-	{field} abv:Definitie : definitie 
+	{field} rdf:langString : definitie 
 }
 Identificatienummer -  Concept : identificatie >
-Label -  Concept : label >
 Concept -  Concept : type >
-Definitie -  Concept : definitie >
 
 class Contactpersoon{
 	{field} xsd:string : id 
@@ -190,10 +193,9 @@ Contactpersoon --|> Agent
 
 class Definitie{
 	{field} xsd:string : id 
-	{field} xsd:string : tekst 
-	{field} abv:Taal : taal 
 }
-Taal - "1" Definitie : taal >
+
+Definitie --|> Term
 
 class Erkenning{
 	{field} xsd:string : id 
@@ -215,17 +217,15 @@ FunctieBeroepActiviteit --|> Concept
 
 class GeschiedenisAgent{
 	{field} xsd:string : id 
-	{field} xsd:string : waarde 
-	{field} abv:Taal : taal 
 }
-Taal - "1" GeschiedenisAgent : taal >
+
+GeschiedenisAgent --|> Term
 
 class GeschiedenisArchief{
 	{field} xsd:string : id 
-	{field} xsd:string : tekst 
-	{field} abv:Taal : taal 
 }
-Taal - "1" GeschiedenisArchief : taal >
+
+GeschiedenisArchief --|> Term
 
 class Identificatienummer{
 	{field} xsd:string : id 
@@ -239,10 +239,9 @@ Agent - "1" Identificatienummer : bron >
 
 class InhoudBereik{
 	{field} xsd:string : id 
-	{field} xsd:string : tekst 
-	{field} abv:Taal : taal 
 }
-Taal - "1" InhoudBereik : taal >
+
+InhoudBereik --|> Term
 
 class JuridischeBeperking{
 	{field} xsd:string : id 
@@ -254,26 +253,21 @@ class JuridischeBeperking{
 
 class Label{
 	{field} xsd:string : id 
-	{field} xsd:string : term 
-	{field} abv:Taal : taal 
 }
-Taal - "1" Label : taal >
+
+Label --|> Term
 
 class Naam{
-	{field} xsd:string : id 
-	{field} xsd:string : naam 
 	{field} abv:TypeNaam : type_naam 
-	{field} abv:Taal : taal 
 }
 TypeNaam - "1" Naam : type_naam >
-Taal - "1" Naam : taal >
+Naam --|> Term
 
 class Omvang{
 	{field} xsd:string : id 
-	{field} xsd:string : waarde 
-	{field} abv:Taal : taal 
 }
-Taal - "1" Omvang : taal >
+
+Omvang --|> Term
 
 class Onderwerp{
 	{field} xsd:string : id 
@@ -296,10 +290,10 @@ Periode --|> Codetabel
 class Plaats{
 	{field} xsd:string : id 
 	{field} abv:Identificatienummer : identificatienummer 
-	{field} abv:Naam : Plaatsnaam 
+	{field} abv:Naam : plaatsnaam 
 }
 Identificatienummer -  Plaats : identificatienummer >
-Naam -  Plaats : Plaatsnaam >
+Naam -  Plaats : plaatsnaam >
 
 class Publicatie{
 	{field} xsd:string : id 
@@ -311,7 +305,7 @@ class Publicatie{
 	{field} xsd:string : uitgever 
 	{field} xsd:string : plaats_van_uitgave 
 	{field} xsd:date : datum_uitgave 
-	{field} xsd:anyURI : URL 
+	{field} xsd:anyURI : url 
 }
 Identificatienummer -  Publicatie : identificatienummer >
 Naam -  Publicatie : auteur >
@@ -319,10 +313,9 @@ Titel - "1" Publicatie : titel >
 
 class Raadplegingsvoorwaarde{
 	{field} xsd:string : id 
-	{field} xsd:string : tekst 
-	{field} abv:Taal : taal 
 }
-Taal - "1" Raadplegingsvoorwaarde : taal >
+
+Raadplegingsvoorwaarde --|> Term
 
 class Rechtenstatus{
 	{field} xsd:string : id 
@@ -368,12 +361,17 @@ class Taal{
 
 Taal --|> Codetabel
 
+class Term{
+	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
+}
+
+
 class Titel{
 	{field} xsd:string : id 
-	{field} xsd:string : waarde 
-	{field} abv:Taal : taal 
 }
-Taal - "1" Titel : taal >
+
+Titel --|> Term
 
 class Toegang{
 	{field} xsd:string : id 
@@ -385,7 +383,7 @@ class Toegang{
 	{field} xsd:string : uitgever 
 	{field} xsd:string : plaats_van_uitgave 
 	{field} xsd:date : datum_uitgave 
-	{field} xsd:anyURI : URL 
+	{field} xsd:anyURI : url 
 }
 Identificatienummer -  Toegang : identificatienummer >
 Naam -  Toegang : auteur >
@@ -422,29 +420,22 @@ class TypeWaarde{
 TypeWaarde --|> Codetabel
 
 class Vergelijking{
-	{field} xsd:string : id 
-	{field} xsd:string : tekst 
 	{field} abv:TypeVergelijking : type_vergelijking 
-	{field} abv:Taal : taal 
 }
 TypeVergelijking - "1" Vergelijking : type_vergelijking >
-Taal - "1" Vergelijking : taal >
+Vergelijking --|> Term
 
 class Verwerving{
 	{field} xsd:string : id 
-	{field} xsd:string : tekst 
-	{field} abv:Taal : taal 
 }
-Taal - "1" Verwerving : taal >
+
+Verwerving --|> Term
 
 class Waarde{
-	{field} xsd:string : id 
-	{field} xsd:string : tekst 
 	{field} abv:TypeWaarde : type_waarde 
-	{field} abv:Taal : taal 
 }
 TypeWaarde - "1" Waarde : type_waarde >
-Taal - "1" Waarde : taal >
+Waarde --|> Term
 
 class Waardering{
 	{field} xsd:string : id 
