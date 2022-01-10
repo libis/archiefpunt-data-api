@@ -7,7 +7,7 @@ skinparam componentStyle uml2
 skinparam wrapMessageWidth 100
 skinparam ArrowColor #Maroon
 
-title Archiefbank ontology - 0.3 - 2021-10-23 00:23:00 +0200
+title Archiefbank ontology - 0.3 - 2021-12-14 16:49:31 +0100
               
 package abv {
 
@@ -29,7 +29,7 @@ class Agent{
 	{field} abv:Identificatienummer : identificatie 
 	{field} abv:TypeAgent : type 
 	{field} abv:Naam : naam 
-	{field} xsd:date : datering 
+	{field} xsd:gYear : datering 
 	{field} xsd:string : datering_text 
 	{field} abv:GeschiedenisAgent : geschiedenis_agent 
 	{field} abv:Functie : functie_beroep_activiteit 
@@ -67,7 +67,7 @@ class Archief{
 	{field} xsd:string : id 
 	{field} abv:Identificatienummer : identificatienummer 
 	{field} abv:Titel : titel 
-	{field} xsd:date : datering 
+	{field} xsd:gYear : datering 
 	{field} xsd:string : datering_text 
 	{field} abv:Beschrijvingsniveau : beschrijvingsniveau 
 	{field} abv:Archief : is_onderdeel_van 
@@ -132,12 +132,10 @@ Periode - "1" Associatie : periode >
 Onderwerp - "1" Associatie : onderwerp >
 
 class Beheerder{
-	{field} xsd:string : id 
-	{field} abv:Agent : naam 
 	{field} abv:RolBeheerder : rol 
 }
-Agent - "1" Beheerder : naam >
 RolBeheerder - "1" Beheerder : rol >
+Beheerder --|> Agent
 
 class Bereikbaarheid{
 	{field} xsd:string : id 
@@ -343,11 +341,10 @@ RolSamensteller --|> Codetabel
 
 class Samensteller{
 	{field} xsd:string : id 
-	{field} abv:Agent : naam 
 	{field} abv:RolSamensteller : rol 
 }
-Agent - "1" Samensteller : naam >
 RolSamensteller - "1" Samensteller : rol >
+Samensteller --|> Agent
 
 class Soort{
 	{field} xsd:string : id 

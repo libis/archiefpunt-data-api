@@ -13,7 +13,8 @@ Signal.trap('TERM') do
 end
 
 def worker(d, i, wid)
-  WORKER_MODEL.new(d['attributes'])
+  SOLIS.shape_as_model(d['type'].classify).new(d['attributes'])
+  #WORKER_MODEL.new(d['attributes'])
 rescue StandardError => e
   @logger.error("#{wid} - #{e.message}")
   puts JSON.pretty_generate(d)
@@ -23,7 +24,6 @@ rescue StandardError => e
   nil
 end
 
-
 @logger = Logger.new(STDOUT)
 READ_QUEUE = Queue.new
 WRITE_QUEUE = Queue.new
@@ -31,10 +31,10 @@ READERS = []
 WRITERS = []
 SOLIS = Solis::Graph.new(Solis::Shape::Reader::File.read(Solis::ConfigFile[:shape]), Solis::ConfigFile[:solis])
 
-WORKER_MODEL = Agent
+#WORKER_MODEL = Plaats
 #WORKER_MODEL = Contactpersoon
 #WORKER_MODEL = Archief
-WORKER_MODEL_NAME = WORKER_MODEL.new.class.name.to_sym
+#WORKER_MODEL_NAME = WORKER_MODEL.new.class.name.to_sym
 
 5.times do |x|
   READERS << Thread.new do
@@ -62,12 +62,13 @@ end
   WRITERS << Thread.new do
     worker_id = x
     @logger.info("Starting writer")
-    File.open("config/exports/ttl/#{WORKER_MODEL_NAME}_#{worker_id}.ttl", 'ab') do |f|
-      while @running || WRITE_QUEUE.length > 0
-        data = WRITE_QUEUE.pop
-        next if data.nil? || WRITE_QUEUE.empty?
-        @logger.info("WRITE - #{worker_id} - #{File.basename(data[:file])} - #{data[:id]}")
-        tries = 0
+
+    while @running || WRITE_QUEUE.length > 0
+      data = WRITE_QUEUE.pop
+      next if data.nil? || WRITE_QUEUE.empty?
+      @logger.info("WRITE - #{worker_id} - #{File.basename(data[:file])} - #{data[:id]}")
+      tries = 0
+      File.open("config/exports/ttl/#{data[:model].class.name}_#{worker_id}.ttl", 'ab') do |f|
         begin
           tries += 1
           f.puts data[:model].to_ttl
@@ -107,7 +108,7 @@ file_list.each do |file_id|
   @logger.info("READ QUEUE size = #{READ_QUEUE.length}")
 end
 
-i=0
+i = 0
 while READ_QUEUE.length > 0 || WRITE_QUEUE.length > 0
   @logger.info("IN=#{READ_QUEUE.length}  OUT=#{WRITE_QUEUE.length}")
   GC.start if i.modulo(500) == 0

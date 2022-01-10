@@ -27,19 +27,6 @@ module Sinatra
       settings.archiefbank.shape_as_model(klass)
     end
 
-    def audit_request
-      return if endpoints.grep(/#{request.path_info}/).empty?
-
-      m = request.request_method
-      ip = request.ip
-      entity = request.path_info.gsub(/^\/+/,'')
-      user = ''
-      audit = {ip: ip, action: m, entity: entity, user: user, timestamp: Time.now}
-      settings.auditor << audit
-    rescue Exception => e
-      Solis::LOGGER.error('Unable to write audit')
-    end
-
     def recursive_compact(hash_or_array)
       p = proc do |*args|
         v = args.last
