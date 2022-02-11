@@ -7,14 +7,16 @@ skinparam componentStyle uml2
 skinparam wrapMessageWidth 100
 skinparam ArrowColor #Maroon
 
-title Archiefbank ontology - 0.3 - 2021-12-14 16:49:31 +0100
+title Archiefbank ontology - 0.4 - 2022-02-11 10:18:49 +0100
               
 package abv {
 
 class Aangroei{
 	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
+	{field} abv:Aangroei : trefwoord 
 }
-
+Aangroei - "1" Aangroei : trefwoord >
 Aangroei --|> Codetabel
 
 class Adres{
@@ -27,68 +29,48 @@ Plaats - "1" Adres : gemeente >
 class Agent{
 	{field} xsd:string : id 
 	{field} abv:Identificatienummer : identificatie 
-	{field} abv:TypeAgent : type 
-	{field} abv:Naam : naam 
-	{field} xsd:gYear : datering 
+	{field} rdf:langString : naam 
+	{field} abv:Datering : datering 
 	{field} xsd:string : datering_text 
-	{field} abv:GeschiedenisAgent : geschiedenis_agent 
-	{field} abv:Functie : functie_beroep_activiteit 
-	{field} abv:Erkenning : erkenning 
-	{field} abv:Adres : adres 
-	{field} xsd:string : telefoon 
-	{field} xsd:string : email 
-	{field} xsd:string : website 
-	{field} xsd:string : gebouw 
-	{field} abv:Toegang : zoektoegang 
-	{field} xsd:string : openingsuren 
-	{field} xsd:string : toegang_gebruiksvoorwaarden 
-	{field} abv:Bereikbaarheid : bereikbaarheid 
+	{field} rdf:langString : geschiedenis_agent 
 	{field} abv:Taal : taal 
 	{field} abv:Associatie : associaties 
-	{field} abv:Publicatie : bron_beschrijving_agent 
+	{field} abv:Publicatie : bronnen_agent 
 	{field} abv:Publicatie : bibliografie_agent 
 	{field} xsd:string : opmerking 
 }
 Identificatienummer -  Agent : identificatie >
-TypeAgent - "1" Agent : type >
-Naam -  Agent : naam >
-GeschiedenisAgent -  Agent : geschiedenis_agent >
-Functie -  Agent : functie_beroep_activiteit >
-Erkenning - "1" Agent : erkenning >
-Adres -  Agent : adres >
-Toegang -  Agent : zoektoegang >
-Bereikbaarheid -  Agent : bereikbaarheid >
+Datering - "1" Agent : datering >
 Taal -  Agent : taal >
-Associatie -  Agent : associaties >
-Publicatie -  Agent : bron_beschrijving_agent >
+Associatie - "1" Agent : associaties >
+Publicatie -  Agent : bronnen_agent >
 Publicatie -  Agent : bibliografie_agent >
 
 class Archief{
 	{field} xsd:string : id 
 	{field} abv:Identificatienummer : identificatienummer 
-	{field} abv:Titel : titel 
-	{field} xsd:gYear : datering 
+	{field} rdf:langString : titel 
+	{field} abv:Datering : datering 
 	{field} xsd:string : datering_text 
 	{field} abv:Beschrijvingsniveau : beschrijvingsniveau 
 	{field} abv:Archief : is_onderdeel_van 
 	{field} abv:Omvang : omvang 
 	{field} abv:Samensteller : samensteller 
 	{field} abv:Beheerder : beheerder 
-	{field} abv:GeschiedenisArchief : geschiedenis_archief 
-	{field} abv:Verwerving : verwerving 
-	{field} abv:InhoudBereik : inhoud_en_bereik 
+	{field} rdf:langString : geschiedenis_archief 
+	{field} rdf:langString : verwerving 
+	{field} rdf:langString : inhoud_en_bereik 
 	{field} abv:Waardering : selectie 
 	{field} abv:Aangroei : aangroei 
 	{field} xsd:string : aangroei_text 
 	{field} abv:Ordening : ordening 
 	{field} xsd:string : ordening_text 
 	{field} abv:JuridischeBeperking : juridische_beperking 
-	{field} abv:Agent : contactpersoon 
 	{field} abv:Raadplegingsvoorwaarde : raadplegingsvoorwaarde 
 	{field} abv:Taal : taal 
 	{field} xsd:string : taal_text 
-	{field} abv:Toegang : toegang 
-	{field} abv:Publicatie : bron_beschrijving_archief 
+	{field} abv:Publicatie : toegang 
+	{field} abv:Publicatie : bronnen_archief 
 	{field} abv:Publicatie : bibliografie_archief 
 	{field} xsd:string : aantekening_archivaris 
 	{field} abv:Associatie : associatie 
@@ -97,26 +79,22 @@ class Archief{
 	{field} xsd:string : bronverwijzing_archief 
 }
 Identificatienummer -  Archief : identificatienummer >
-Titel -  Archief : titel >
+Datering -  Archief : datering >
 Beschrijvingsniveau - "1" Archief : beschrijvingsniveau >
 Archief - "1" Archief : is_onderdeel_van >
 Omvang -  Archief : omvang >
 Samensteller -  Archief : samensteller >
 Beheerder -  Archief : beheerder >
-GeschiedenisArchief -  Archief : geschiedenis_archief >
-Verwerving -  Archief : verwerving >
-InhoudBereik -  Archief : inhoud_en_bereik >
 Waardering -  Archief : selectie >
 Aangroei - "1" Archief : aangroei >
 Ordening - "1" Archief : ordening >
 JuridischeBeperking - "1" Archief : juridische_beperking >
-Agent -  Archief : contactpersoon >
-Raadplegingsvoorwaarde - "1" Archief : raadplegingsvoorwaarde >
+Raadplegingsvoorwaarde -  Archief : raadplegingsvoorwaarde >
 Taal -  Archief : taal >
-Toegang -  Archief : toegang >
-Publicatie -  Archief : bron_beschrijving_archief >
+Publicatie -  Archief : toegang >
+Publicatie -  Archief : bronnen_archief >
 Publicatie -  Archief : bibliografie_archief >
-Associatie -  Archief : associatie >
+Associatie - "1" Archief : associatie >
 Rechtenstatus - "1" Archief : rechtenstatus_metadata >
 
 class Associatie{
@@ -126,15 +104,30 @@ class Associatie{
 	{field} abv:Periode : periode 
 	{field} abv:Onderwerp : onderwerp 
 }
-Plaats - "1" Associatie : plaats >
-Agent - "1" Associatie : agent >
-Periode - "1" Associatie : periode >
-Onderwerp - "1" Associatie : onderwerp >
+Plaats -  Associatie : plaats >
+Agent -  Associatie : agent >
+Periode -  Associatie : periode >
+Onderwerp -  Associatie : onderwerp >
 
 class Beheerder{
+	{field} xsd:string : id 
 	{field} abv:RolBeheerder : rol 
+	{field} abv:Erkenning : erkenning 
+	{field} abv:Adres : adres 
+	{field} xsd:string : telefoon 
+	{field} xsd:string : email 
+	{field} xsd:string : website 
+	{field} xsd:string : gebouw 
+	{field} abv:Publicatie : toegang 
+	{field} xsd:string : openingsuren 
+	{field} xsd:string : toegangsvoorwaarden 
+	{field} abv:Bereikbaarheid : bereikbaarheid 
 }
 RolBeheerder - "1" Beheerder : rol >
+Erkenning - "1" Beheerder : erkenning >
+Adres -  Beheerder : adres >
+Publicatie -  Beheerder : toegang >
+Bereikbaarheid -  Beheerder : bereikbaarheid >
 Beheerder --|> Agent
 
 class Bereikbaarheid{
@@ -163,7 +156,6 @@ Bronbeschrijving --|> Concept
 
 class Bronverwijzing{
 	{field} xsd:string : id 
-	{field} rdf:langString : verwijzing 
 }
 
 
@@ -175,13 +167,13 @@ Codetabel --|> Concept
 
 class Concept{
 	{field} xsd:string : id 
-	{field} abv:Identificatienummer : identificatie 
+	{field} abv:Identificatienummer : identificatienummer 
 	{field} rdf:langString : label 
-	{field} abv:Concept : type 
+	{field} abv:TypeConcept : type 
 	{field} rdf:langString : definitie 
 }
-Identificatienummer -  Concept : identificatie >
-Concept -  Concept : type >
+Identificatienummer -  Concept : identificatienummer >
+TypeConcept -  Concept : type >
 
 class Contactpersoon{
 	{field} xsd:string : id 
@@ -230,7 +222,6 @@ class Identificatienummer{
 	{field} xsd:string : waarde 
 	{field} abv:TypeIdentificatienummer : type 
 	{field} abv:Agent : bron 
-	{field} xsd:date : datering 
 }
 TypeIdentificatienummer - "1" Identificatienummer : type >
 Agent - "1" Identificatienummer : bron >
@@ -256,6 +247,8 @@ class Label{
 Label --|> Term
 
 class Naam{
+	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
 	{field} abv:TypeNaam : type_naam 
 }
 TypeNaam - "1" Naam : type_naam >
@@ -263,9 +256,12 @@ Naam --|> Term
 
 class Omvang{
 	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
+	{field} abv:Taal : taal 
+	{field} abv:Materiaalsoort : trefwoord 
 }
-
-Omvang --|> Term
+Taal - "1" Omvang : taal >
+Materiaalsoort -  Omvang : trefwoord >
 
 class Onderwerp{
 	{field} xsd:string : id 
@@ -275,8 +271,10 @@ Onderwerp --|> Codetabel
 
 class Ordening{
 	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
+	{field} abv:Ordening : trefwoord 
 }
-
+Ordening - "1" Ordening : trefwoord >
 Ordening --|> Codetabel
 
 class Periode{
@@ -296,8 +294,9 @@ Naam -  Plaats : plaatsnaam >
 class Publicatie{
 	{field} xsd:string : id 
 	{field} abv:Identificatienummer : identificatienummer 
+	{field} xsd:string : bibliografische_verwijzing 
 	{field} abv:Naam : auteur 
-	{field} abv:Titel : titel 
+	{field} rdf:langString : titel 
 	{field} xsd:string : reeks 
 	{field} xsd:string : reeksnummer 
 	{field} xsd:string : uitgever 
@@ -307,12 +306,15 @@ class Publicatie{
 }
 Identificatienummer -  Publicatie : identificatienummer >
 Naam -  Publicatie : auteur >
-Titel - "1" Publicatie : titel >
 
 class Raadplegingsvoorwaarde{
 	{field} xsd:string : id 
+	{field} xsd:string : tekst 
+	{field} abv:Taal : taal 
+	{field} abv:Raadplegingsstatus : raadplegingsstatus 
 }
-
+Taal - "1" Raadplegingsvoorwaarde : taal >
+Raadplegingsstatus - "1" Raadplegingsvoorwaarde : raadplegingsstatus >
 Raadplegingsvoorwaarde --|> Term
 
 class Rechtenstatus{
@@ -342,8 +344,12 @@ RolSamensteller --|> Codetabel
 class Samensteller{
 	{field} xsd:string : id 
 	{field} abv:RolSamensteller : rol 
+	{field} abv:TypeAgent : type 
+	{field} abv:Functie : functie_beroep_activiteit 
 }
 RolSamensteller - "1" Samensteller : rol >
+TypeAgent - "1" Samensteller : type >
+Functie -  Samensteller : functie_beroep_activiteit >
 Samensteller --|> Agent
 
 class Soort{
@@ -372,19 +378,8 @@ Titel --|> Term
 
 class Toegang{
 	{field} xsd:string : id 
-	{field} abv:Identificatienummer : identificatienummer 
-	{field} abv:Naam : auteur 
-	{field} abv:Titel : titel 
-	{field} xsd:string : reeks 
-	{field} xsd:string : reeksnummer 
-	{field} xsd:string : uitgever 
-	{field} xsd:string : plaats_van_uitgave 
-	{field} xsd:date : datum_uitgave 
-	{field} xsd:anyURI : url 
 }
-Identificatienummer -  Toegang : identificatienummer >
-Naam -  Toegang : auteur >
-Titel - "1" Toegang : titel >
+
 
 class TypeAgent{
 	{field} xsd:string : id 
@@ -417,6 +412,8 @@ class TypeWaarde{
 TypeWaarde --|> Codetabel
 
 class Vergelijking{
+	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
 	{field} abv:TypeVergelijking : type_vergelijking 
 }
 TypeVergelijking - "1" Vergelijking : type_vergelijking >
@@ -429,6 +426,8 @@ class Verwerving{
 Verwerving --|> Term
 
 class Waarde{
+	{field} xsd:string : id 
+	{field} rdf:langString : waarde 
 	{field} abv:TypeWaarde : type_waarde 
 }
 TypeWaarde - "1" Waarde : type_waarde >
@@ -442,11 +441,37 @@ class Waardering{
 	{field} xsd:date : datum_waardering 
 	{field} abv:Publicatie : bron_waardering 
 	{field} abv:Agent : bijdragers 
+	{field} xsd:string : opmerkingen 
 }
 Waarde -  Waardering : waarde >
 Vergelijking -  Waardering : vergelijking >
 Publicatie -  Waardering : bron_waardering >
 Agent -  Waardering : bijdragers >
+
+class Materiaalsoort{
+	{field} xsd:string : id 
+}
+
+Materiaalsoort --|> Codetabel
+
+class Datering{
+	{field} xsd:string : id 
+	{field} xsd:duration : gestructureerd 
+	{field} xsd:string : beschrijving 
+}
+
+
+class Raadplegingsstatus{
+	{field} xsd:string : id 
+}
+
+Raadplegingsstatus --|> Codetabel
+
+class TypeConcept{
+	{field} xsd:string : id 
+}
+
+TypeConcept --|> Codetabel
 
 hide circle
 hide methods

@@ -18,7 +18,7 @@ class GenericController < Sinatra::Base
     set :views, (proc { "#{root}/app/views" })
     set :logging, true
     set :static, true
-    set :auditor, RedisQueue.new('audit')
+    set :public_folder, "#{root}/public"
   end
 
   before do
@@ -30,8 +30,13 @@ class GenericController < Sinatra::Base
     @media_type = media_types.first
 
     content_type @media_type
-    audit_request
   end
+
+  get '/_formats' do
+    content_type :json
+    RDF::Format.content_types.keys.to_json
+  end
+
 
   get '/' do
     halt '404', 'To be implemented'
@@ -39,7 +44,7 @@ class GenericController < Sinatra::Base
 
   not_found do
     content_type :json
-    message = { status: 404, body: "not found #{body.join("\n")}" }
+    message = body
     logger.error(message)
     message.to_json
   end

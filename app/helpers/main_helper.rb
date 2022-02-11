@@ -5,6 +5,7 @@ module Sinatra
     end
 
     def api_error(status, source, title="Unknown error", detail="")
+      content_type :json
       {"errors": [{
                     "status": status,
                     "source": {"pointer":  source},
