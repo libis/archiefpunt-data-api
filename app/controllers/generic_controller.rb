@@ -3,11 +3,15 @@ require 'sinatra/base'
 require 'http/accept'
 require 'solis'
 
+require 'config/hooks'
 require 'lib/redis_queue'
 require 'app/helpers/main_helper'
 
 class GenericController < Sinatra::Base
   helpers Sinatra::MainHelper
+
+  DATA_QUEUE = RedisQueue.new(Solis::ConfigFile[:redis][:queue])
+  SOLIS_CONF = Solis::ConfigFile[:solis].merge(Solis::HooksHelper.hooks(DATA_QUEUE))
 
   configure do
     mime_type :jsonapi, 'application/vnd.api+json'
@@ -19,6 +23,9 @@ class GenericController < Sinatra::Base
     set :logging, true
     set :static, true
     set :public_folder, "#{root}/public"
+
+    set :solis, Solis::Graph.new(Solis::Shape::Reader::File.read(Solis::ConfigFile[:shape]),
+                                       SOLIS_CONF)
   end
 
   before do

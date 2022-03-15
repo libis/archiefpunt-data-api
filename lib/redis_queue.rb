@@ -1,5 +1,6 @@
 require 'redis'
 require 'json'
+require 'connection_pool'
 require 'lib/config_file'
 
 class RedisQueue
@@ -7,7 +8,7 @@ class RedisQueue
   include Enumerable
   def initialize(name, redis_url=ConfigFile[:redis][:url])
     @name = name
-    @redis = Redis.new(url: redis_url)
+    @redis = ConnectionPool::Wrapper.new(size:5) {Redis.new(url: redis_url)}
 
     raise "Unable to open redis at '#{redis_url}'" if @redis.nil?
   end

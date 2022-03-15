@@ -10,55 +10,41 @@ skos:Concept a owl:Class;
 
 abv: a owl:Ontology;
   <dc11:creator> "Archiefpunt, Meemo, KADOC, LIBIS";
-  <dc11:date> "2022-02-11 10:18:49 +0100";
+  <dc11:date> "2022-03-15 08:40:45 +0100";
   <dc11:description> "Archiefbank ontology";
   <dc11:title> "Archiefbank ontology";
-  owl:versionInfo 0.4 .
+  owl:versionInfo 0.7 .
 
 abv:BibliografieArchief a owl:Class;
   rdfs:label "BibliografieArchief";
   rdfs:comment "";
   rdfs:subClassOf abv:Concept, [
     a owl:Restriction;
-    owl:maxCardinality 1;
+    owl:minCardinality 1;
     owl:onProperty abv:id
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:Bronbeschrijving a owl:Class;
   rdfs:label "Bronbeschrijving";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Concept, [
+  rdfs:subClassOf abv:Concept, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:Bronverwijzing a owl:Class;
   rdfs:label "Bronverwijzing";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ] .
-
-abv:Contactpersoon a owl:Class;
-  rdfs:label "Contactpersoon";
-  rdfs:comment "";
-  rdfs:subClassOf abv:Agent, [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
@@ -68,122 +54,49 @@ abv:Contactpersoon a owl:Class;
     owl:onProperty abv:id
   ] .
 
-abv:Definitie a owl:Class;
-  rdfs:label "Definitie";
+abv:Datering a owl:Class;
+  rdfs:label "Datering";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Term .
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
 
 abv:FunctieBeroepActiviteit a owl:Class;
   rdfs:label "FunctieBeroepActiviteit";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Concept, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
   ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Concept .
-
-abv:GeschiedenisAgent a owl:Class;
-  rdfs:label "GeschiedenisAgent";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Term, [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
-
-abv:GeschiedenisArchief a owl:Class;
-  rdfs:label "GeschiedenisArchief";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Term .
-
-abv:InhoudBereik a owl:Class;
-  rdfs:label "InhoudBereik";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Term, [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ] .
-
-abv:Label a owl:Class;
-  rdfs:label "Label";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Term .
 
 abv:Materiaalsoort a owl:Class;
   rdfs:label "Materiaalsoort";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:Rol a owl:Class;
   rdfs:label "Rol";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Concept, [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ] .
-
-abv:RolBeheerder a owl:Class;
-  rdfs:label "RolBeheerder";
-  rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Concept, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
@@ -191,32 +104,29 @@ abv:RolBeheerder a owl:Class;
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel .
+  ] .
 
 abv:Soort a owl:Class;
   rdfs:label "Soort";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Concept, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Concept, [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
   ] .
 
-abv:Titel a owl:Class;
-  rdfs:label "Titel";
+abv:Term a owl:Class;
+  rdfs:label "Term";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Term, [
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
@@ -225,7 +135,7 @@ abv:Titel a owl:Class;
 abv:Toegang a owl:Class;
   rdfs:label "Toegang";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
@@ -238,44 +148,40 @@ abv:Toegang a owl:Class;
 abv:TypeConcept a owl:Class;
   rdfs:label "TypeConcept";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:TypeIdentificatienummer a owl:Class;
   rdfs:label "TypeIdentificatienummer";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
-    owl:onProperty abv:id
-  ] .
-
-abv:Verwerving a owl:Class;
-  rdfs:label "Verwerving";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
     owl:onProperty abv:id
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Term .
+  ] .
+
+abv:aangemaakt_op a rdf:Property;
+  rdfs:label "aangemaakt_op";
+  rdfs:comment "datum waarop record werd aangemaakt";
+  rdfs:domain abv:EntiteitMetadata;
+  rdfs:range xsd:date .
+
+abv:aangepast_op a rdf:Property;
+  rdfs:label "aangepast_op";
+  rdfs:comment "datum waarop record is aangepast";
+  rdfs:domain abv:EntiteitMetadata;
+  rdfs:range xsd:date .
 
 abv:aantekening_archivaris a rdf:Property;
   rdfs:label "aantekening_archivaris";
@@ -288,12 +194,6 @@ abv:adres a rdf:Property;
   rdfs:comment "Adres van bewaarplaats.";
   rdfs:domain abv:Beheerder;
   rdfs:range abv:Adres .
-
-abv:agent a rdf:Property;
-  rdfs:label "agent";
-  rdfs:comment "Agent geassocieerd met archief en/of  samensteller";
-  rdfs:domain abv:Associatie;
-  rdfs:range abv:Agent .
 
 abv:auteur a rdf:Property;
   rdfs:label "auteur";
@@ -319,19 +219,19 @@ abv:bibliografie_agent a rdf:Property;
   rdfs:label "bibliografie_agent";
   rdfs:comment "Bronnen over de agent.";
   rdfs:domain abv:Agent;
-  rdfs:range abv:Publicatie .
+  rdfs:range xsd:string .
 
 abv:bibliografie_archief a rdf:Property;
   rdfs:label "bibliografie_archief";
   rdfs:comment "bibliografie werken gebaseerd op of gerelateerd aan het archief/de collectie";
   rdfs:domain abv:Archief;
-  rdfs:range abv:Publicatie .
+  rdfs:range xsd:string .
 
 abv:bijdragers a rdf:Property;
   rdfs:label "bijdragers";
   rdfs:comment "De namen van personen en organisaties die een bijdrage leverden aan deze waardering";
   rdfs:domain abv:Waardering;
-  rdfs:range abv:Agent .
+  rdfs:range xsd:string .
 
 abv:bron_waardering a rdf:Property;
   rdfs:label "bron_waardering";
@@ -343,13 +243,13 @@ abv:bronnen_agent a rdf:Property;
   rdfs:label "bronnen_agent";
   rdfs:comment "Bronnen gebruikt om agentbeschrijving op te stellen.";
   rdfs:domain abv:Agent;
-  rdfs:range abv:Publicatie .
+  rdfs:range xsd:string .
 
 abv:bronnen_archief a rdf:Property;
   rdfs:label "bronnen_archief";
   rdfs:comment "bibliografie werken gebruikt voor het opstellen van de beschrijving";
   rdfs:domain abv:Archief;
-  rdfs:range abv:Publicatie .
+  rdfs:range xsd:string .
 
 abv:definitie a rdf:Property;
   rdfs:label "definitie";
@@ -411,7 +311,7 @@ abv:naam a rdf:Property;
   rdfs:label "naam";
   rdfs:comment "Herhaalbaar om naamsvarianten te documenteren.";
   rdfs:domain abv:Agent;
-  rdfs:range rdf:langString .
+  rdfs:range abv:Naam .
 
 abv:omvang a rdf:Property;
   rdfs:label "omvang";
@@ -515,49 +415,65 @@ abv:verwerving a rdf:Property;
   rdfs:domain abv:Archief;
   rdfs:range rdf:langString .
 
+abv:verwijderd_op a rdf:Property;
+  rdfs:label "verwijderd_op";
+  rdfs:comment "datum waarop record is verwijderd";
+  rdfs:domain abv:EntiteitMetadata;
+  rdfs:range xsd:date .
+
 abv:website a rdf:Property;
   rdfs:label "website";
   rdfs:comment "Website bewaarinstelling.";
   rdfs:domain abv:Beheerder;
   rdfs:range xsd:string .
 
-abv:Bereikbaarheid a owl:Class;
-  rdfs:label "Bereikbaarheid";
+abv:Aangroei a owl:Class;
+  rdfs:label "Aangroei";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Codetabel, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  ] .
+
+abv:Bereikbaarheid a owl:Class;
+  rdfs:label "Bereikbaarheid";
+  rdfs:comment "";
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:Beschrijvingsniveau a owl:Class;
   rdfs:label "Beschrijvingsniveau";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel .
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
 
 abv:Erkenning a owl:Class;
   rdfs:label "Erkenning";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Concept, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Concept, [
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
@@ -566,14 +482,13 @@ abv:Erkenning a owl:Class;
 abv:Functie a owl:Class;
   rdfs:label "Functie";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
@@ -593,12 +508,11 @@ abv:Onderwerp a owl:Class;
 abv:Periode a owl:Class;
   rdfs:label "Periode";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
@@ -607,26 +521,37 @@ abv:Periode a owl:Class;
 abv:Raadplegingsstatus a owl:Class;
   rdfs:label "Raadplegingsstatus";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:Rechtenstatus a owl:Class;
   rdfs:label "Rechtenstatus";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:RolBeheerder a owl:Class;
+  rdfs:label "RolBeheerder";
+  rdfs:comment "";
+  rdfs:subClassOf abv:Codetabel, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
@@ -635,12 +560,11 @@ abv:Rechtenstatus a owl:Class;
 abv:RolSamensteller a owl:Class;
   rdfs:label "RolSamensteller";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
@@ -662,26 +586,24 @@ abv:Taal a owl:Class;
 abv:TypeAgent a owl:Class;
   rdfs:label "TypeAgent";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:TypeNaam a owl:Class;
   rdfs:label "TypeNaam";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
@@ -690,30 +612,34 @@ abv:TypeNaam a owl:Class;
 abv:TypeVergelijking a owl:Class;
   rdfs:label "TypeVergelijking";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:id
   ] .
 
 abv:TypeWaarde a owl:Class;
   rdfs:label "TypeWaarde";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
-  ],
-    abv:Codetabel .
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:_meta a rdf:Property;
+  rdfs:label "_meta";
+  rdfs:comment "";
+  rdfs:domain abv:EntiteitBasis;
+  rdfs:range abv:EntiteitMetadata .
 
 abv:aangroei a rdf:Property;
   rdfs:label "aangroei";
@@ -738,12 +664,6 @@ abv:associaties a rdf:Property;
   rdfs:comment "Plaats, Periode, Onderwerp of agent gelinkt aan de agent. ";
   rdfs:domain abv:Agent;
   rdfs:range abv:Associatie .
-
-abv:beschrijving a rdf:Property;
-  rdfs:label "beschrijving";
-  rdfs:comment "";
-  rdfs:domain abv:Datering;
-  rdfs:range xsd:string .
 
 abv:beschrijvingsniveau a rdf:Property;
   rdfs:label "beschrijvingsniveau";
@@ -781,6 +701,13 @@ abv:contractuele_beperking a rdf:Property;
   rdfs:domain abv:JuridischeBeperking;
   rdfs:range xsd:boolean .
 
+abv:datering_systematisch a rdf:Property;
+  rdfs:label "datering_systematisch";
+  rdfs:comment "Jaartallen van bereik van het archief: uit welke periode stammen de documenten.";
+  rdfs:domain abv:Agent,
+    abv:Archief;
+  rdfs:range xsd:duration .
+
 abv:datum_uitgave a rdf:Property;
   rdfs:label "datum_uitgave";
   rdfs:comment "datum van uitgave";
@@ -804,12 +731,6 @@ abv:gemeente a rdf:Property;
   rdfs:comment "";
   rdfs:domain abv:Adres;
   rdfs:range abv:Plaats .
-
-abv:gestructureerd a rdf:Property;
-  rdfs:label "gestructureerd";
-  rdfs:comment "";
-  rdfs:domain abv:Datering;
-  rdfs:range xsd:duration .
 
 abv:gevoelig_voor_auteursrechtelijkebescherming a rdf:Property;
   rdfs:label "gevoelig_voor_auteursrechtelijkebescherming";
@@ -877,6 +798,18 @@ abv:reeksnummer a rdf:Property;
   rdfs:domain abv:Publicatie;
   rdfs:range xsd:string .
 
+abv:rol_beheerder a rdf:Property;
+  rdfs:label "rol_beheerder";
+  rdfs:comment "";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:RolBeheerder .
+
+abv:rol_samensteller a rdf:Property;
+  rdfs:label "rol_samensteller";
+  rdfs:comment "";
+  rdfs:domain abv:Archief;
+  rdfs:range abv:RolSamensteller .
+
 abv:straat_en_nummer a rdf:Property;
   rdfs:label "straat_en_nummer";
   rdfs:comment "";
@@ -892,8 +825,8 @@ abv:tekst a rdf:Property;
 abv:toegang a rdf:Property;
   rdfs:label "toegang";
   rdfs:comment "Verwijzing naar de toegang voor de archieven/collecties die de Agent bewaard.";
-  rdfs:domain abv:Beheerder,
-    abv:Archief;
+  rdfs:domain abv:Archief,
+    abv:Beheerder;
   rdfs:range abv:Publicatie .
 
 abv:toegangsvoorwaarden a rdf:Property;
@@ -926,69 +859,17 @@ abv:waardestelling a rdf:Property;
   rdfs:domain abv:Waardering;
   rdfs:range xsd:string .
 
-abv:datering a rdf:Property;
-  rdfs:label "datering";
-  rdfs:comment "Jaartallen van bereik van het archief: uit welke periode stammen de documenten.";
-  rdfs:domain abv:Agent,
-    abv:Archief;
-  rdfs:range abv:Datering .
-
-abv:titel a rdf:Property;
-  rdfs:label "titel";
-  rdfs:comment "titel van de publicatie";
-  rdfs:domain abv:Publicatie,
-    abv:Archief;
-  rdfs:range rdf:langString .
-
-abv:Aangroei a owl:Class;
-  rdfs:label "Aangroei";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:trefwoord
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:trefwoord
-  ],
-    abv:Codetabel, [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:waarde
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:waarde
-  ] .
-
 abv:Adres a owl:Class;
   rdfs:label "Adres";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:straat_en_nummer
-  ], [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:straat_en_nummer
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
+    owl:onProperty abv:straat_en_nummer
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
@@ -997,143 +878,75 @@ abv:Adres a owl:Class;
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:gemeente
-  ] .
-
-abv:Datering a owl:Class;
-  rdfs:label "Datering";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:gestructureerd
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:beschrijving
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:gestructureerd
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:beschrijving
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
   ] .
 
 abv:Vergelijking a owl:Class;
   rdfs:label "Vergelijking";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:waarde
-  ],
-    abv:Term, [
+  ], [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:type_vergelijking
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:waarde
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:type_vergelijking
   ] .
 
-abv:Waarde a owl:Class;
-  rdfs:label "Waarde";
+abv:titel a rdf:Property;
+  rdfs:label "titel";
+  rdfs:comment "titel van de publicatie";
+  rdfs:domain abv:Archief,
+    abv:Publicatie;
+  rdfs:range rdf:langString .
+
+abv:trefwoord a rdf:Property;
+  rdfs:label "trefwoord";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:domain abv:Omvang,
+    abv:Ordening;
+  rdfs:range abv:Ordening .
+
+abv:EntiteitMetadata a owl:Class;
+  rdfs:label "EntiteitMetadata";
+  rdfs:comment "";
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:type_waarde
+    owl:maxCardinality 1;
+    owl:onProperty abv:aangemaakt_op
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:waarde
+    owl:onProperty abv:aangepast_op
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:type_waarde
-  ],
-    abv:Term, [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:waarde
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
+    owl:onProperty abv:verwijderd_op
   ] .
-
-abv:datering_text a rdf:Property;
-  rdfs:label "datering_text";
-  rdfs:comment "oud datering veld ";
-  rdfs:domain abv:Agent,
-    abv:Archief;
-  rdfs:range xsd:string .
-
-abv:identificatienummer a rdf:Property;
-  rdfs:label "identificatienummer";
-  rdfs:comment "Identificatienummer voor de publicatie";
-  rdfs:domain abv:Concept,
-    abv:Publicatie,
-    abv:Archief,
-    abv:Plaats;
-  rdfs:range abv:Identificatienummer .
-
-abv:rol a rdf:Property;
-  rdfs:label "rol";
-  rdfs:comment "";
-  rdfs:domain abv:Beheerder,
-    abv:Samensteller;
-  rdfs:range abv:RolSamensteller .
 
 abv:JuridischeBeperking a owl:Class;
   rdfs:label "JuridischeBeperking";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
-    owl:onProperty abv:contractuele_beperking
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:gevoelig_voor_auteursrechtelijkebescherming
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:gevoelig_voor_auteursrechtelijkebescherming
+    owl:onProperty abv:privacy_gevoelig
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:privacy_gevoelig
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:contractuele_beperking
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
@@ -1141,58 +954,28 @@ abv:JuridischeBeperking a owl:Class;
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
-    owl:onProperty abv:privacy_gevoelig
+    owl:onProperty abv:gevoelig_voor_auteursrechtelijkebescherming
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ] .
-
-abv:Naam a owl:Class;
-  rdfs:label "Naam";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:waarde
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:waarde
-  ],
-    abv:Term, [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:type_naam
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:type_naam
+    owl:onProperty abv:gevoelig_voor_auteursrechtelijkebescherming
   ] .
 
 abv:Omvang a owl:Class;
   rdfs:label "Omvang";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:taal
-  ], [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:waarde
   ], [
     a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
     owl:minCardinality 1;
-    owl:onProperty abv:id
+    owl:onProperty abv:taal
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
@@ -1201,114 +984,83 @@ abv:Omvang a owl:Class;
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:trefwoord
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:waarde
   ] .
 
 abv:Ordening a owl:Class;
   rdfs:label "Ordening";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:trefwoord
-  ],
-    abv:Codetabel, [
+  rdfs:subClassOf abv:Codetabel, [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:waarde
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
     owl:onProperty abv:trefwoord
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:waarde
+    owl:onProperty abv:trefwoord
   ] .
 
 abv:Plaats a owl:Class;
   rdfs:label "Plaats";
-  rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:comment "capteert informatie over geografische locaties. Verwijzingen naar externe geografische thesauri is sterk aanbevolen. De beschrijving is uiterst beperkt gehouden, in de veronderstelling dat rijkere metadata, zoals historische namen, taalvarianten, maar ook coördinaten eenvoudig aan externe geografische thesauri ontleend kunnen worden. ";
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
+    owl:minCardinality 0;
+    owl:onProperty abv:identificatienummer
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:plaatsnaam
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:identificatienummer
   ] .
 
 abv:Raadplegingsvoorwaarde a owl:Class;
   rdfs:label "Raadplegingsvoorwaarde";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:tekst
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:id
+    owl:onProperty abv:tekst
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
-    owl:onProperty abv:id
+    owl:onProperty abv:taal
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
     owl:onProperty abv:raadplegingsstatus
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:taal
-  ], [
-    a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:tekst
-  ],
-    abv:Term, [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:taal
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
     owl:onProperty abv:raadplegingsstatus
   ] .
 
 abv:Samensteller a owl:Class;
   rdfs:label "Samensteller";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
-    owl:onProperty abv:rol
-  ],
-    abv:Agent, [
+    owl:onProperty abv:agent
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:agent
+  ], [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:type
@@ -1320,11 +1072,12 @@ abv:Samensteller a owl:Class;
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:functie_beroep_activiteit
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:rol
-  ], [
+  ] .
+
+abv:Waarde a owl:Class;
+  rdfs:label "Waarde";
+  rdfs:comment "";
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:id
@@ -1332,39 +1085,55 @@ abv:Samensteller a owl:Class;
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:type_waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type_waarde
   ] .
 
-abv:trefwoord a rdf:Property;
-  rdfs:label "trefwoord";
-  rdfs:comment "";
-  rdfs:domain abv:Omvang,
-    abv:Ordening,
-    abv:Aangroei;
-  rdfs:range abv:Ordening .
+abv:datering_text a rdf:Property;
+  rdfs:label "datering_text";
+  rdfs:comment "Woordelijke uitleg bij datering_systematisch, initiëel ook voor legacy data.";
+  rdfs:domain abv:Agent,
+    abv:Archief;
+  rdfs:range xsd:string .
 
-abv:type a rdf:Property;
-  rdfs:label "type";
-  rdfs:comment "Keuze uit drie opties. Is de agent een persoon, een familie of een instelling.";
-  rdfs:domain abv:Identificatienummer,
+abv:identificatienummer a rdf:Property;
+  rdfs:label "identificatienummer";
+  rdfs:comment "Identificatienummer voor de publicatie";
+  rdfs:domain abv:Archief,
     abv:Concept,
-    abv:Samensteller;
-  rdfs:range abv:TypeAgent .
+    abv:Plaats,
+    abv:Publicatie;
+  rdfs:range abv:Identificatienummer .
 
 abv:Identificatienummer a owl:Class;
   rdfs:label "Identificatienummer";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
+    owl:minCardinality 0;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:type
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
@@ -1377,273 +1146,123 @@ abv:Identificatienummer a owl:Class;
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:bron
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:waarde
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:waarde
   ] .
 
-abv:taal a rdf:Property;
-  rdfs:label "taal";
+abv:Naam a owl:Class;
+  rdfs:label "Naam";
   rdfs:comment "";
-  rdfs:domain abv:Agent,
-    abv:Omvang,
-    abv:Archief,
-    abv:Raadplegingsvoorwaarde;
-  rdfs:range abv:Taal .
+  rdfs:subClassOf abv:EntiteitBasis, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:type_naam
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:type_naam
+  ] .
+
+abv:agent a rdf:Property;
+  rdfs:label "agent";
+  rdfs:comment "Link met 'agent'";
+  rdfs:domain abv:Associatie,
+    abv:Beheerder,
+    abv:Samensteller;
+  rdfs:range abv:Agent .
+
+abv:type a rdf:Property;
+  rdfs:label "type";
+  rdfs:comment "Keuze uit drie opties. Is de agent een persoon, een familie of een instelling.";
+  rdfs:domain abv:Concept,
+    abv:Identificatienummer,
+    abv:Samensteller;
+  rdfs:range abv:TypeAgent .
 
 abv:Associatie a owl:Class;
   rdfs:label "Associatie";
   rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:subClassOf abv:EntiteitBasis, [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:plaats
+  ], [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:agent
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:onderwerp
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
     owl:onProperty abv:periode
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:plaats
+    owl:onProperty abv:onderwerp
   ] .
+
+abv:taal a rdf:Property;
+  rdfs:label "taal";
+  rdfs:comment "";
+  rdfs:domain abv:Agent,
+    abv:Archief,
+    abv:Omvang,
+    abv:Raadplegingsvoorwaarde;
+  rdfs:range abv:Taal .
 
 abv:Waardering a owl:Class;
   rdfs:label "Waardering";
-  rdfs:comment "";
-  rdfs:subClassOf [
+  rdfs:comment "capteert informatie over de intrinsieke en comparatieve erfgoedwaarde van het archiefbestand";
+  rdfs:subClassOf abv:EntiteitBasis, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:waardestelling
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:waardestelling
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:waarde
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:vergelijking
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datum_waardering
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datum_waardering
+  ], [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:bron_waardering
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:datum_waardering
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:waardestelling
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
     owl:onProperty abv:bijdragers
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:datum_waardering
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:waardestelling
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:waarde
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:opmerkingen
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:vergelijking
-  ] .
-
-abv:Beheerder a owl:Class;
-  rdfs:label "Beheerder";
-  rdfs:comment "";
-  rdfs:subClassOf abv:Agent, [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:erkenning
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:toegangsvoorwaarden
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:erkenning
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:openingsuren
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:openingsuren
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:website
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:rol
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:bereikbaarheid
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:adres
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:toegang
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:email
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:telefoon
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:toegangsvoorwaarden
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:rol
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:gebouw
-  ] .
-
-abv:Concept a owl:Class;
-  rdfs:label "Concept";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:definitie
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:type
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:label
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:identificatienummer
-  ] .
-
-abv:Term a owl:Class;
-  rdfs:label "Term";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:waarde
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:waarde
   ] .
 
 abv:Agent a owl:Class;
   rdfs:label "Agent";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:bibliografie_agent
-  ], [
+  rdfs:comment "beperkt beschrijvingsmodel. doel: enkel relateren van agents aan archieven en waarderingen. geen afzonderlijke biografische databank (dus geen familierelaties bvb) Gebruik daarvoor een externe bron.";
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:identificatie
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:opmerking
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:datering_text
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:datering
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:geschiedenis_agent
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:bronnen_agent
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:taal
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:datering
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
@@ -1651,56 +1270,158 @@ abv:Agent a owl:Class;
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
+    owl:onProperty abv:datering_systematisch
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datering_text
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
     owl:onProperty abv:datering_text
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
+    owl:onProperty abv:geschiedenis_agent
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:taal
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
     owl:onProperty abv:associaties
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:associaties
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bronnen_agent
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bibliografie_agent
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:opmerking
+  ] .
+
+abv:Beheerder a owl:Class;
+  rdfs:label "Beheerder";
+  rdfs:comment "";
+  rdfs:subClassOf abv:EntiteitBasis, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:agent
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:agent
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:erkenning
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:erkenning
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:adres
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:telefoon
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:email
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:website
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:gebouw
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:toegang
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:openingsuren
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:openingsuren
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:toegangsvoorwaarden
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:toegangsvoorwaarden
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bereikbaarheid
+  ] .
+
+abv:Concept a owl:Class;
+  rdfs:label "Concept";
+  rdfs:comment "";
+  rdfs:subClassOf abv:EntiteitBasis, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:identificatienummer
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:label
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:type
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:definitie
   ] .
 
 abv:Publicatie a owl:Class;
   rdfs:label "Publicatie";
-  rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:auteur
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:titel
-  ], [
+  rdfs:comment "bibliografische informatie voor publicaties die een toegang op een archiefbestand vormen, over het archiefbestand gaan of de directe informatiebron zijn voor de archiefbeschrijving. sterk aanbevolen om zoveel mogelijk externe identificatienummers voor de publicatie op te nemen. mogelijkheid om ofwel een tekststring met een volledige bibliografische referentie op te nemen, ofwel een gestructureerde beschrijving van de publicatie. de gestructureerde beschrijving maakt publicaties beter doorzoekbaar binnen archiefbank.";
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:identificatienummer
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:bibliografische_verwijzing
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:bibliografische_verwijzing
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:datum_uitgave
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:reeksnummer
+    owl:onProperty abv:auteur
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:titel
   ], [
     a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:url
+    owl:maxCardinality 1;
+    owl:onProperty abv:titel
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
@@ -1708,11 +1429,11 @@ abv:Publicatie a owl:Class;
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:id
+    owl:onProperty abv:reeks
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:bibliografische_verwijzing
+    owl:onProperty abv:reeksnummer
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
@@ -1723,85 +1444,91 @@ abv:Publicatie a owl:Class;
     owl:onProperty abv:uitgever
   ], [
     a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:plaats_van_uitgave
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datum_uitgave
+  ], [
+    a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:datum_uitgave
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:plaats_van_uitgave
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:reeks
+    owl:onProperty abv:url
   ] .
 
 abv:waarde a rdf:Property;
   rdfs:label "waarde";
   rdfs:comment "Omschrijving van een specifieke erfgoedwaarde die aan het archiefbestand wordt toegekend";
   rdfs:domain abv:Identificatienummer,
-    abv:Waarde,
-    abv:Vergelijking,
-    abv:Omvang,
-    abv:Term,
-    abv:Ordening,
-    abv:Aangroei,
     abv:Naam,
+    abv:Omvang,
+    abv:Ordening,
+    abv:Vergelijking,
+    abv:Waarde,
     abv:Waardering;
   rdfs:range abv:Waarde .
 
 abv:Codetabel a owl:Class;
   rdfs:label "Codetabel";
   rdfs:comment "";
+  rdfs:subClassOf abv:Concept, [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:id
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:id
+  ] .
+
+abv:EntiteitBasis a owl:Class;
+  rdfs:label "EntiteitBasis";
+  rdfs:comment "";
   rdfs:subClassOf [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:id
+  ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:id
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ],
-    abv:Concept .
+    owl:minCardinality 0;
+    owl:onProperty abv:_meta
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:_meta
+  ] .
 
 abv:Archief a owl:Class;
   rdfs:label "Archief";
   rdfs:comment "";
-  rdfs:subClassOf [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:omvang
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:inhoud_en_bereik
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:datering
-  ], [
+  rdfs:subClassOf abv:EntiteitBasis, [
     a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:identificatienummer
   ], [
     a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:taal
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:samensteller
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:taal_text
-  ], [
-    a owl:Restriction;
     owl:minCardinality 1;
     owl:onProperty abv:titel
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datering_systematisch
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:datering_text
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:datering_text
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
@@ -1809,23 +1536,43 @@ abv:Archief a owl:Class;
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:id
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:datering_text
+    owl:onProperty abv:beschrijvingsniveau
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:aangroei
+    owl:onProperty abv:is_onderdeel_van
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:bronverwijzing_record
+    owl:onProperty abv:is_onderdeel_van
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:bronnen_archief
+    owl:onProperty abv:omvang
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:samensteller
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:rol_samensteller
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:rol_samensteller
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:beheerder
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:rol_beheerder
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:rol_beheerder
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
@@ -1833,35 +1580,55 @@ abv:Archief a owl:Class;
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:ordening_text
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:is_onderdeel_van
+    owl:onProperty abv:verwerving
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:datering_text
+    owl:onProperty abv:inhoud_en_bereik
   ], [
     a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:bronverwijzing_archief
+    owl:minCardinality 0;
+    owl:onProperty abv:selectie
   ], [
     a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:beschrijvingsniveau
+    owl:minCardinality 0;
+    owl:onProperty abv:aangroei
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
     owl:onProperty abv:aangroei
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:bronverwijzing_record
+    owl:minCardinality 0;
+    owl:onProperty abv:aangroei_text
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:aangroei_text
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:is_onderdeel_van
+    owl:onProperty abv:ordening
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:ordening
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 0;
+    owl:onProperty abv:ordening_text
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:ordening_text
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:juridische_beperking
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:juridische_beperking
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
@@ -1869,63 +1636,35 @@ abv:Archief a owl:Class;
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:selectie
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:beheerder
+    owl:onProperty abv:taal
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:verwerving
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:ordening
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:associatie
+    owl:onProperty abv:taal_text
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:toegang
   ], [
     a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:ordening_text
-  ], [
-    a owl:Restriction;
     owl:minCardinality 0;
-    owl:onProperty abv:aantekening_archivaris
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:associatie
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 0;
-    owl:onProperty abv:aangroei_text
-  ], [
-    a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:juridische_beperking
-  ], [
-    a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:rechtenstatus_metadata
+    owl:onProperty abv:bronnen_archief
   ], [
     a owl:Restriction;
     owl:minCardinality 0;
     owl:onProperty abv:bibliografie_archief
   ], [
     a owl:Restriction;
-    owl:maxCardinality 1;
-    owl:onProperty abv:aangroei_text
+    owl:minCardinality 0;
+    owl:onProperty abv:aantekening_archivaris
   ], [
     a owl:Restriction;
-    owl:minCardinality 1;
-    owl:onProperty abv:bronverwijzing_archief
+    owl:minCardinality 0;
+    owl:onProperty abv:associatie
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:associatie
   ], [
     a owl:Restriction;
     owl:minCardinality 1;
@@ -1933,69 +1672,57 @@ abv:Archief a owl:Class;
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:ordening
+    owl:onProperty abv:rechtenstatus_metadata
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:bronverwijzing_record
   ], [
     a owl:Restriction;
     owl:maxCardinality 1;
-    owl:onProperty abv:juridische_beperking
+    owl:onProperty abv:bronverwijzing_record
+  ], [
+    a owl:Restriction;
+    owl:minCardinality 1;
+    owl:onProperty abv:bronverwijzing_archief
+  ], [
+    a owl:Restriction;
+    owl:maxCardinality 1;
+    owl:onProperty abv:bronverwijzing_archief
   ] .
 
 abv:id a rdf:Property;
   rdfs:label "id";
   rdfs:comment "systeem UUID";
-  rdfs:domain abv:JuridischeBeperking,
-    abv:Adres,
-    abv:Beschrijvingsniveau,
-    abv:Identificatienummer,
-    abv:Associatie,
-    abv:Beheerder,
-    abv:InhoudBereik,
-    abv:Bronverwijzing,
-    abv:Vergelijking,
-    abv:Omvang,
-    abv:Label,
-    abv:RolSamensteller,
-    abv:Bronbeschrijving,
-    abv:BibliografieArchief,
-    abv:Samensteller,
-    abv:GeschiedenisAgent,
+  rdfs:domain abv:Aangroei,
     abv:Bereikbaarheid,
-    abv:Aangroei,
-    abv:FunctieBeroepActiviteit,
-    abv:Naam,
-    abv:GeschiedenisArchief,
-    abv:Archief,
-    abv:RolBeheerder,
-    abv:Definitie,
-    abv:Plaats,
-    abv:Agent,
-    abv:Erkenning,
-    abv:Verwerving,
-    abv:TypeAgent,
-    abv:Titel,
-    abv:Raadplegingsstatus,
-    abv:Waarde,
-    abv:Concept,
-    abv:Rechtenstatus,
-    abv:Term,
+    abv:Beschrijvingsniveau,
+    abv:BibliografieArchief,
+    abv:Bronbeschrijving,
+    abv:Bronverwijzing,
     abv:Codetabel,
-    abv:Ordening,
-    abv:TypeWaarde,
-    abv:Contactpersoon,
-    abv:Taal,
+    abv:Erkenning,
     abv:Functie,
-    abv:TypeNaam,
-    abv:Datering,
-    abv:Periode,
-    abv:Soort,
-    abv:TypeConcept,
-    abv:Materiaalsoort,
-    abv:Publicatie,
-    abv:Rol,
+    abv:FunctieBeroepActiviteit,
     abv:Onderwerp,
+    abv:Periode,
+    abv:Rechtenstatus,
+    abv:Rol,
+    abv:RolBeheerder,
+    abv:RolSamensteller,
+    abv:Soort,
+    abv:Taal,
+    abv:Term,
+    abv:Toegang,
+    abv:TypeAgent,
     abv:TypeIdentificatienummer,
+    abv:TypeNaam,
     abv:TypeVergelijking,
-    abv:Waardering,
-    abv:Raadplegingsvoorwaarde,
-    abv:Toegang;
+    abv:TypeWaarde,
+    abv:Waarde,
+    abv:Materiaalsoort,
+    abv:Datering,
+    abv:Raadplegingsstatus,
+    abv:TypeConcept,
+    abv:EntiteitBasis;
   rdfs:range xsd:string .

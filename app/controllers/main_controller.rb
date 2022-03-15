@@ -1,156 +1,71 @@
 # frozen_string_literal: true
 require 'http'
-require_relative 'generic_controller'
 require 'hashdiff'
+require_relative 'generic_controller'
 
 class MainController < GenericController
-  configure do
-    set :archiefbank_audit_queue, RedisQueue.new("archiefbank")
-    set :archiefbank, Solis::Graph.new(Solis::Shape::Reader::File.read(Solis::ConfigFile[:shape]),
-                                       Solis::ConfigFile[:solis].merge({
-                                                                         hooks: {
-                                                                           create: {
-                                                                             before: lambda do |model, data|
-                                                                               n = {}
-
-                                                                               model.class.metadata[:attributes].keys.each do |m|
-                                                                                 n[m]=model.instance_variable_get("@#{m}")
-                                                                               end
-
-                                                                               diff = Hashdiff.best_diff({}, n)
-
-                                                                               unless diff.empty?
-                                                                                 new_data = {
-                                                                                   entity: {
-                                                                                     id: model.id,
-                                                                                     name: model.name,
-                                                                                     name_plural: model.name(true),
-                                                                                     graph: model.class.graph_name
-                                                                                   },
-                                                                                   diff: diff,
-                                                                                   timestamp: Time.now,
-                                                                                   user: 'unknown',
-                                                                                   change_reason: 'create'
-                                                                                 }
-
-                                                                                 settings.archiefbank_audit_queue.push(new_data)
-                                                                               end
-                                                                             end
-                                                                           },
-                                                                           delete: {
-                                                                             before: lambda do |model, data|
-                                                                               n = {}
-                                                                               data[:new].instance_variable_names.each do |m|
-                                                                                 n[m.gsub(/^@/, '')] =
-                                                                                   data[:new].instance_variable_get(m)
-                                                                               end
-
-                                                                               diff = Hashdiff.best_diff(n, {})
-                                                                               unless diff.empty?
-                                                                                 new_data = {
-                                                                                   entity: {
-                                                                                     id: model.id,
-                                                                                     name: model.name,
-                                                                                     name_plural: model.name(true),
-                                                                                     graph: model.class.graph_name
-                                                                                   },
-                                                                                   diff: diff,
-                                                                                   timestamp: Time.now,
-                                                                                   user: 'unknown',
-                                                                                   change_reason: 'delete'
-                                                                                 }
-
-                                                                                 settings.archiefbank_audit_queue.push(new_data)
-                                                                               end
-                                                                             end
-                                                                           },
-                                                                           update: {
-                                                                             before: lambda do |model, data|
-                                                                               o = {}
-                                                                               data[:old].instance_variable_names.each do |m|
-                                                                                 o[m.gsub(/^@/, '')] =
-                                                                                   data[:old].instance_variable_get(m)
-                                                                               end
-                                                                               n = {}
-                                                                               data[:new].instance_variable_names.each do |m|
-                                                                                 n[m.gsub(/^@/, '')] =
-                                                                                   data[:new].instance_variable_get(m)
-                                                                               end
-
-                                                                               diff = Hashdiff.best_diff(o, n)
-
-                                                                               unless diff.empty?
-                                                                                 new_data = {
-                                                                                   entity: {
-                                                                                     id: model.id,
-                                                                                     name: model.name,
-                                                                                     name_plural: model.name(true),
-                                                                                     graph: model.class.graph_name
-                                                                                   },
-                                                                                   diff: Hashdiff.diff(o, n),
-                                                                                   timestamp: Time.now,
-                                                                                   user: 'unknown',
-                                                                                   change_reason: 'update'
-                                                                                 }
-
-                                                                                 settings.archiefbank_audit_queue.push(new_data)
-                                                                               end
-                                                                             end
-                                                                           }
-                                                                         }
-                                                                       }))
-  end
-
   get '/' do
     content_type :json
     endpoints.to_json
   rescue StandardError => e
-    halt 500, api_error('500', request.url, 'Unknown Error', e.message)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.message).to_json
   end
 
   get '/_vandal/?' do
-    File.read('public/vandal/index.html')
+    #File.read('public/vandal/index.html')
+    redirect to('/_vandal/index.html')
   rescue StandardError => e
-    halt 500, api_error('500', request.url, 'Unknown Error', e.message)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.message).to_json
   end
 
   get '/_doc/?' do
     redirect to('/_doc/index.html')
   rescue StandardError => e
-    halt 500, api_error('500', request.url, 'Unknown Error', e.message)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.message).to_json
   end
 
   get '/_yas/?' do
-    erb :'yas/index.html', locals: { sparql_endpoint: '/_sparql' }
+    # erb :'yas/index.html', locals: { sparql_endpoint: '/_sparql' }
+    redirect to('/_yas/index.html')
   rescue StandardError => e
-    halt 500, api_error('500', request.url, 'Unknown Error', e.message)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.message).to_json
+  end
+
+  get '/_sparql/?' do
+    content_type :json
+    halt 501, api_error('501', request.url, 'SparQL error', 'Only POST queries are supported').to_json
   end
 
   post '/_sparql' do
+    content_type 'application/x-turtle'
     result = ''
     data = request.body.read
 
-    halt 406, api_error('406', request.url, 'SparQL error', 'INSERT, UPDATE, DELETE not allowed') unless data.match(/|clear|drop|insert|update|delete/i).nil?
+    halt 501, api_error('501', request.url, 'SparQL error', 'INSERT, UPDATE, DELETE not allowed').to_json unless data.match(/clear|drop|insert|update|delete/i).nil?
 
     url = "#{Solis::ConfigFile[:solis][:sparql_endpoint]}?#{data}"
 
     response = HTTP.get(url)
     if response.status == 200
       result = response.body.to_s
+    elsif response.status == 500
+      halt 500, api_error('500', request.url, 'SparQL error', response.body.to_s).to_json
     else
-
+      halt response.status, api_error(response.status.to_s, request.url, 'SparQL error', response.body.to_s).to_json
     end
 
     result
+  rescue HTTP::Error => e
+    halt 500, api_error('500', request.url, 'SparQL error', e.message).to_json
   rescue StandardError => e
-    halt 500, api_error('500', request.url, 'SparQL error', e.message)
+    halt 500, api_error('500', request.url, 'SparQL error', e.message).to_json
   end
 
   get '/schema.json' do
     content_type :json
     Graphiti::Schema.generate.to_json
   rescue StandardError => e
-    halt 500, api_error('500', request.url, 'Unknown Error', e.message)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.message).to_json
   end
 
   get '/:entity' do
@@ -212,7 +127,8 @@ class MainController < GenericController
     raise Graphiti::Errors::RecordNotFound unless resource
 
     data = JSON.parse(request.body.read)
-    resource = for_model.new.update(data)
+    resource = for_model.new.update(data,
+                                    params.key?(:validate_dependencies) ? !params[:validate_dependencies].eql?('false') : true)
 
     for_resource.find({ id: resource.id }).to_jsonapi
   rescue Solis::Error::InvalidAttributeError => e

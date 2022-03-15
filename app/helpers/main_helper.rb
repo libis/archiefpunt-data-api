@@ -1,7 +1,7 @@
 module Sinatra
   module MainHelper
     def endpoints
-      settings.archiefbank.list_shapes.map {|m| "/#{m.tableize}"}.sort
+      settings.solis.list_shapes.map {|m| "/#{m.tableize}"}.sort
     end
 
     def api_error(status, source, title="Unknown error", detail="")
@@ -11,21 +11,21 @@ module Sinatra
                     "source": {"pointer":  source},
                     "title": title,
                     "detail": detail
-                  }]}
+                  }]}.to_json
     end
 
     def for_resource
       entity = params[:entity]
-      halt 404, api_error('404', request.url, "Not found", "Available endpoints: #{endpoints.join(', ')}") if endpoints.grep(/#{entity}/).empty?
+      halt 404, api_error('404', request.url, "Not found", "Available endpoints: #{endpoints.join(', ')}").to_json if endpoints.grep(/#{entity}/).empty?
       klass="#{entity.singularize.classify}"
-      settings.archiefbank.shape_as_resource(klass)
+      settings.solis.shape_as_resource(klass)
     end
 
     def for_model
       entity = params[:entity]
-      halt 404, api_error('404', request.url, "Not found", "Available endpoints: #{endpoints.join(', ')}") if endpoints.grep(/#{entity}/).empty?
+      halt 404, api_error('404', request.url, "Not found", "Available endpoints: #{endpoints.join(', ')}").to_json if endpoints.grep(/#{entity}/).empty?
       klass="#{entity.singularize.classify}"
-      settings.archiefbank.shape_as_model(klass)
+      settings.solis.shape_as_model(klass)
     end
 
     def recursive_compact(hash_or_array)

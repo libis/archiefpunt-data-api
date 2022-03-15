@@ -19,21 +19,6 @@ abv:AangroeiShape
                  sh:name "id";
                  sh:description "systeem UUID" ;
                  sh:datatype xsd:string ;
-                 sh:minCount 0 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:waarde ;
-                 sh:name "waarde";
-                 sh:description "" ;
-                 sh:datatype rdf:langString ;
-                 sh:minCount 0 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:Aangroei ;
-                 sh:name "trefwoord" ;
-                 sh:description "" ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Aangroei ;
                  sh:minCount 1 ;
                  sh:maxCount 1 ;
     ] ;
@@ -43,15 +28,8 @@ abv:AdresShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Adres ;
-    sh:node         abv:Adres ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Adres" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:straat_en_nummer ;
                  sh:name "straat_en_nummer";
                  sh:description "" ;
@@ -73,15 +51,8 @@ abv:AgentShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Agent ;
-    sh:node         abv:Agent ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Agent" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:Identificatienummer ;
                  sh:name "identificatie" ;
                  sh:description "Herhaalbaar om verschillende IDs op te kunnen nemen.Eigen persistente URI wordt door het systeem toegekend en is dus ‘verplicht’.Andere IDs enkel toevoegen als ze al buiten ABV bestaan." ;
@@ -89,23 +60,22 @@ abv:AgentShape
                  sh:class    abv:Identificatienummer ;
                  sh:minCount 1 ;
     ] ;
-    sh:property [sh:path abv:naam ;
-                 sh:name "naam";
+    sh:property [sh:path abv:Naam ;
+                 sh:name "naam" ;
                  sh:description "Herhaalbaar om naamsvarianten te documenteren." ;
-                 sh:datatype rdf:langString ;
+                 sh:nodeKind sh:IRI ;
+                 sh:class    abv:Naam ;
                  sh:minCount 1 ;
     ] ;
-    sh:property [sh:path abv:Datering ;
-                 sh:name "datering" ;
+    sh:property [sh:path abv:datering_systematisch ;
+                 sh:name "datering_systematisch";
                  sh:description "Geboorte- en sterftejaar, periode van activiteit familie, oprichtings- en opheffingsdatum." ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Datering ;
+                 sh:datatype xsd:duration ;
                  sh:minCount 0 ;
-                 sh:maxCount 1 ;
     ] ;
     sh:property [sh:path abv:datering_text ;
                  sh:name "datering_text";
-                 sh:description "oud datering veld" ;
+                 sh:description "Woordelijke uitleg bij datering_systematisch, initiëel ook voor legacy data." ;
                  sh:datatype xsd:string ;
                  sh:minCount 0 ;
                  sh:maxCount 1 ;
@@ -131,18 +101,16 @@ abv:AgentShape
                  sh:minCount 0 ;
                  sh:maxCount 1 ;
     ] ;
-    sh:property [sh:path abv:Publicatie ;
-                 sh:name "bronnen_agent" ;
+    sh:property [sh:path abv:bronnen_agent ;
+                 sh:name "bronnen_agent";
                  sh:description "Bronnen gebruikt om agentbeschrijving op te stellen." ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Publicatie ;
+                 sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
-    sh:property [sh:path abv:Publicatie ;
-                 sh:name "bibliografie_agent" ;
+    sh:property [sh:path abv:bibliografie_agent ;
+                 sh:name "bibliografie_agent";
                  sh:description "Bronnen over de agent." ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Publicatie ;
+                 sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
     sh:property [sh:path abv:opmerking ;
@@ -157,15 +125,8 @@ abv:ArchiefShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Archief ;
-    sh:node         abv:Archief ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Archief" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "Intern id voor deze beschrijving." ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:Identificatienummer ;
                  sh:name "identificatienummer" ;
                  sh:description "Identificatienummer voor het archief of de collectie." ;
@@ -179,16 +140,15 @@ abv:ArchiefShape
                  sh:datatype rdf:langString ;
                  sh:minCount 1 ;
     ] ;
-    sh:property [sh:path abv:Datering ;
-                 sh:name "datering" ;
+    sh:property [sh:path abv:datering_systematisch ;
+                 sh:name "datering_systematisch";
                  sh:description "Jaartallen van bereik van het archief: uit welke periode stammen de documenten." ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Datering ;
+                 sh:datatype xsd:duration ;
                  sh:minCount 0 ;
     ] ;
     sh:property [sh:path abv:datering_text ;
                  sh:name "datering_text";
-                 sh:description "oud datering veld" ;
+                 sh:description "Woordelijke uitleg bij datering_systematisch, initiëel ook voor legacy data." ;
                  sh:datatype xsd:string ;
                  sh:minCount 0 ;
                  sh:maxCount 1 ;
@@ -223,12 +183,28 @@ abv:ArchiefShape
                  sh:class    abv:Samensteller ;
                  sh:minCount 1 ;
     ] ;
+    sh:property [sh:path abv:RolSamensteller ;
+                 sh:name "rol_samensteller" ;
+                 sh:description "" ;
+                 sh:nodeKind sh:IRI ;
+                 sh:class    abv:RolSamensteller ;
+                 sh:minCount 1 ;
+                 sh:maxCount 1 ;
+    ] ;
     sh:property [sh:path abv:Beheerder ;
                  sh:name "beheerder" ;
                  sh:description "persoon of organisatie die het archief of de collectie vandaag beheerd.link naar wat voorheen de ‘bewaarplaats’ was. Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats." ;
                  sh:nodeKind sh:IRI ;
                  sh:class    abv:Beheerder ;
                  sh:minCount 1 ;
+    ] ;
+    sh:property [sh:path abv:RolBeheerder ;
+                 sh:name "rol_beheerder" ;
+                 sh:description "" ;
+                 sh:nodeKind sh:IRI ;
+                 sh:class    abv:RolBeheerder ;
+                 sh:minCount 1 ;
+                 sh:maxCount 1 ;
     ] ;
     sh:property [sh:path abv:geschiedenis_archief ;
                  sh:name "geschiedenis_archief";
@@ -313,25 +289,22 @@ abv:ArchiefShape
                  sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
-    sh:property [sh:path abv:Publicatie ;
-                 sh:name "toegang" ;
+    sh:property [sh:path abv:toegang ;
+                 sh:name "toegang";
                  sh:description "link naar één of meer beschrijvingen van toegangen. veld verzamelt informatie uit oude velden “toegangen” en “online toegangen”" ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Publicatie ;
+                 sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
-    sh:property [sh:path abv:Publicatie ;
-                 sh:name "bronnen_archief" ;
+    sh:property [sh:path abv:bronnen_archief ;
+                 sh:name "bronnen_archief";
                  sh:description "bibliografie werken gebruikt voor het opstellen van de beschrijving" ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Publicatie ;
+                 sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
-    sh:property [sh:path abv:Publicatie ;
-                 sh:name "bibliografie_archief" ;
+    sh:property [sh:path abv:bibliografie_archief ;
+                 sh:name "bibliografie_archief";
                  sh:description "bibliografie werken gebaseerd op of gerelateerd aan het archief/de collectie" ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Publicatie ;
+                 sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
     sh:property [sh:path abv:aantekening_archivaris ;
@@ -376,15 +349,8 @@ abv:AssociatieShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Associatie ;
-    sh:node         abv:Associatie ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Associatie" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:Plaats ;
                  sh:name "plaats" ;
                  sh:description "Plaats geassocieerd met het archief." ;
@@ -419,20 +385,13 @@ abv:BeheerderShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Beheerder ;
-    sh:node         abv:AgentShape ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Beheerder" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:RolBeheerder ;
-                 sh:name "rol" ;
-                 sh:description "" ;
+    sh:property [sh:path abv:Agent ;
+                 sh:name "agent" ;
+                 sh:description "Link met 'agent'" ;
                  sh:nodeKind sh:IRI ;
-                 sh:class    abv:RolBeheerder ;
+                 sh:class    abv:Agent ;
                  sh:minCount 1 ;
                  sh:maxCount 1 ;
     ] ;
@@ -569,7 +528,7 @@ abv:BronverwijzingShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Bronverwijzing ;
-    sh:node         abv:Bronverwijzing ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Bronverwijzing" ;
     sh:property [sh:path abv:id ;
                  sh:name "id";
@@ -599,15 +558,8 @@ abv:ConceptShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Concept ;
-    sh:node         abv:Concept ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Concept" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:Identificatienummer ;
                  sh:name "identificatienummer" ;
                  sh:description "Identificatienummer voor het concept" ;
@@ -633,36 +585,6 @@ abv:ConceptShape
                  sh:description "Definitie van het Concept" ;
                  sh:datatype rdf:langString ;
                  sh:minCount 0 ;
-    ] ;
-.
-
-abv:ContactpersoonShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:Contactpersoon ;
-    sh:node         abv:AgentShape ;
-    sh:name         "Contactpersoon" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
-abv:DefinitieShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:Definitie ;
-    sh:node         abv:TermShape ;
-    sh:name         "Definitie" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
     ] ;
 .
 
@@ -711,49 +633,12 @@ abv:FunctieBeroepActiviteitShape
     ] ;
 .
 
-abv:GeschiedenisAgentShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:GeschiedenisAgent ;
-    sh:node         abv:TermShape ;
-    sh:name         "GeschiedenisAgent" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
-abv:GeschiedenisArchiefShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:GeschiedenisArchief ;
-    sh:node         abv:TermShape ;
-    sh:name         "GeschiedenisArchief" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
 abv:IdentificatienummerShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Identificatienummer ;
-    sh:node         abv:Identificatienummer ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Identificatienummer" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:waarde ;
                  sh:name "waarde";
                  sh:description "" ;
@@ -779,34 +664,12 @@ abv:IdentificatienummerShape
     ] ;
 .
 
-abv:InhoudBereikShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:InhoudBereik ;
-    sh:node         abv:TermShape ;
-    sh:name         "InhoudBereik" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
 abv:JuridischeBeperkingShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:JuridischeBeperking ;
-    sh:node         abv:JuridischeBeperking ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "JuridischeBeperking" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:privacy_gevoelig ;
                  sh:name "privacy_gevoelig";
                  sh:description "" ;
@@ -830,34 +693,12 @@ abv:JuridischeBeperkingShape
     ] ;
 .
 
-abv:LabelShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:Label ;
-    sh:node         abv:TermShape ;
-    sh:name         "Label" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
 abv:NaamShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Naam ;
-    sh:node         abv:TermShape ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Naam" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:waarde ;
                  sh:name "waarde";
                  sh:description "" ;
@@ -879,15 +720,8 @@ abv:OmvangShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Omvang ;
-    sh:node         abv:Omvang ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Omvang" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:waarde ;
                  sh:name "waarde";
                  sh:description "" ;
@@ -933,13 +767,6 @@ abv:OrdeningShape
     sh:targetClass  abv:Ordening ;
     sh:node         abv:CodetabelShape ;
     sh:name         "Ordening" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:waarde ;
                  sh:name "waarde";
                  sh:description "" ;
@@ -976,18 +803,11 @@ abv:PlaatsShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Plaats ;
-    sh:node         abv:Plaats ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Plaats" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:Identificatienummer ;
                  sh:name "identificatienummer" ;
-                 sh:description "" ;
+                 sh:description "Identificatienummer voor de publicatie" ;
                  sh:nodeKind sh:IRI ;
                  sh:class    abv:Identificatienummer ;
                  sh:minCount 0 ;
@@ -1005,15 +825,8 @@ abv:PublicatieShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Publicatie ;
-    sh:node         abv:Publicatie ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Publicatie" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:Identificatienummer ;
                  sh:name "identificatienummer" ;
                  sh:description "Identificatienummer voor de publicatie" ;
@@ -1087,15 +900,8 @@ abv:RaadplegingsvoorwaardeShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Raadplegingsvoorwaarde ;
-    sh:node         abv:TermShape ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Raadplegingsvoorwaarde" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:tekst ;
                  sh:name "tekst";
                  sh:description "" ;
@@ -1185,20 +991,13 @@ abv:SamenstellerShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Samensteller ;
-    sh:node         abv:AgentShape ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Samensteller" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:RolSamensteller ;
-                 sh:name "rol" ;
-                 sh:description "" ;
+    sh:property [sh:path abv:Agent ;
+                 sh:name "agent" ;
+                 sh:description "Link met 'agent'" ;
                  sh:nodeKind sh:IRI ;
-                 sh:class    abv:RolSamensteller ;
+                 sh:class    abv:Agent ;
                  sh:minCount 1 ;
                  sh:maxCount 1 ;
     ] ;
@@ -1253,30 +1052,8 @@ abv:TermShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Term ;
-    sh:node         abv:Term ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Term" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:waarde ;
-                 sh:name "waarde";
-                 sh:description "" ;
-                 sh:datatype rdf:langString ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
-abv:TitelShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:Titel ;
-    sh:node         abv:TermShape ;
-    sh:name         "Titel" ;
     sh:property [sh:path abv:id ;
                  sh:name "id";
                  sh:description "systeem UUID" ;
@@ -1290,7 +1067,7 @@ abv:ToegangShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Toegang ;
-    sh:node         abv:Toegang ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Toegang" ;
     sh:property [sh:path abv:id ;
                  sh:name "id";
@@ -1380,15 +1157,8 @@ abv:VergelijkingShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Vergelijking ;
-    sh:node         abv:TermShape ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Vergelijking" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:waarde ;
                  sh:name "waarde";
                  sh:description "" ;
@@ -1406,26 +1176,11 @@ abv:VergelijkingShape
     ] ;
 .
 
-abv:VerwervingShape
-    a               sh:NodeShape ;
-    sh:description "" ;
-    sh:targetClass  abv:Verwerving ;
-    sh:node         abv:TermShape ;
-    sh:name         "Verwerving" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-.
-
 abv:WaardeShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Waarde ;
-    sh:node         abv:TermShape ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Waarde" ;
     sh:property [sh:path abv:id ;
                  sh:name "id";
@@ -1455,15 +1210,8 @@ abv:WaarderingShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Waardering ;
-    sh:node         abv:Waardering ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Waardering" ;
-    sh:property [sh:path abv:id ;
-                 sh:name "id";
-                 sh:description "systeem UUID" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
     sh:property [sh:path abv:waardestelling ;
                  sh:name "waardestelling";
                  sh:description "Omvattende verklaring van de erfgoedwaarde die een archiefbestand vertegenwoordigt." ;
@@ -1499,11 +1247,10 @@ abv:WaarderingShape
                  sh:class    abv:Publicatie ;
                  sh:minCount 0 ;
     ] ;
-    sh:property [sh:path abv:Agent ;
-                 sh:name "bijdragers" ;
+    sh:property [sh:path abv:bijdragers ;
+                 sh:name "bijdragers";
                  sh:description "De namen van personen en organisaties die een bijdrage leverden aan deze waardering" ;
-                 sh:nodeKind sh:IRI ;
-                 sh:class    abv:Agent ;
+                 sh:datatype xsd:string ;
                  sh:minCount 0 ;
     ] ;
     sh:property [sh:path abv:opmerkingen ;
@@ -1533,27 +1280,13 @@ abv:DateringShape
     a               sh:NodeShape ;
     sh:description "" ;
     sh:targetClass  abv:Datering ;
-    sh:node         abv:Datering ;
+    sh:node         abv:EntiteitBasisShape ;
     sh:name         "Datering" ;
     sh:property [sh:path abv:id ;
                  sh:name "id";
                  sh:description "systeem UUID" ;
                  sh:datatype xsd:string ;
                  sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:gestructureerd ;
-                 sh:name "gestructureerd";
-                 sh:description "" ;
-                 sh:datatype xsd:duration ;
-                 sh:minCount 1 ;
-                 sh:maxCount 1 ;
-    ] ;
-    sh:property [sh:path abv:beschrijving ;
-                 sh:name "beschrijving";
-                 sh:description "" ;
-                 sh:datatype xsd:string ;
-                 sh:minCount 0 ;
                  sh:maxCount 1 ;
     ] ;
 .
@@ -1584,6 +1317,55 @@ abv:TypeConceptShape
                  sh:description "systeem UUID" ;
                  sh:datatype xsd:string ;
                  sh:minCount 1 ;
+                 sh:maxCount 1 ;
+    ] ;
+.
+
+abv:EntiteitBasisShape
+    a               sh:NodeShape ;
+    sh:description "" ;
+    sh:targetClass  abv:EntiteitBasis ;
+    sh:node         abv:EntiteitBasis ;
+    sh:name         "EntiteitBasis" ;
+    sh:property [sh:path abv:id ;
+                 sh:name "id";
+                 sh:description "systeem UUID" ;
+                 sh:datatype xsd:string ;
+                 sh:minCount 0 ;
+                 sh:maxCount 1 ;
+    ] ;
+    sh:property [sh:path abv:EntiteitMetadata ;
+                 sh:name "_meta" ;
+                 sh:description "" ;
+                 sh:nodeKind sh:IRI ;
+                 sh:class    abv:EntiteitMetadata ;
+                 sh:minCount 0 ;
+                 sh:maxCount 1 ;
+    ] ;
+.
+
+abv:EntiteitMetadataShape
+    a               sh:NodeShape ;
+    sh:description "" ;
+    sh:targetClass  abv:EntiteitMetadata ;
+    sh:node         abv:EntiteitBasisShape ;
+    sh:name         "EntiteitMetadata" ;
+    sh:property [sh:path abv:aangemaakt_op ;
+                 sh:name "aangemaakt_op";
+                 sh:description "datum waarop record werd aangemaakt" ;
+                 sh:datatype xsd:date ;
+                 sh:maxCount 1 ;
+    ] ;
+    sh:property [sh:path abv:aangepast_op ;
+                 sh:name "aangepast_op";
+                 sh:description "datum waarop record is aangepast" ;
+                 sh:datatype xsd:date ;
+                 sh:maxCount 1 ;
+    ] ;
+    sh:property [sh:path abv:verwijderd_op ;
+                 sh:name "verwijderd_op";
+                 sh:description "datum waarop record is verwijderd" ;
+                 sh:datatype xsd:date ;
                  sh:maxCount 1 ;
     ] ;
 .
