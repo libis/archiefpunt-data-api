@@ -17,7 +17,7 @@ COPY run.sh run.sh
 
 RUN chmod a+x cache && chown -R abv:abv /app
 USER abv:abv
-RUN gem install gems/solis-0.19.0.gem
+RUN gem install gems/solis-0.27.0.gem
 RUN bundle install
 RUN gem cleanup minitest
 

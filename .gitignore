@@ -3,3 +3,8 @@ gems/*
 .idea
 Gemfile.lock
 .env
+public/_doc
+config/doc/_doc
+config/doc/*.jar
+config/cache
+config/solis/*.tgz
